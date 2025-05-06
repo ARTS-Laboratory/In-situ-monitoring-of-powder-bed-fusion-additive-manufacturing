@@ -5,14 +5,11 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from scipy.optimize import curve_fit
 from scipy.ndimage import gaussian_filter
+import plotly.graph_objects as go
+import plotly.io as pio
 
-# Folder path
-#folder_path = r"G:\Measurement24"
-#folder_path = r"F:\NIST AM DATA\signal strength data\pulser_off (H) 2"
-folder_path = r"C:\Users\mwhetham\Desktop\signal strength data\Experiment6"
+folder_path = r"C:\Users\mwhetham\Desktop\signal strength data\Experiment7"
 
-# Target heatmap dimensions
-#heatmap_dim = (86, 100)
 heatmap_dim = (100,100)
 total_required = heatmap_dim[0] * heatmap_dim[1]
 
@@ -77,24 +74,81 @@ popt, _ = curve_fit(lambda xy, a, b, c, d, e, f: poly_2d(xy[0], xy[1], a, b, c, 
 # Create a grid of fitted Z values
 Z_fit = poly_2d(X, Y, *popt)
 
-# Plot 3D Surface
-fig = plt.figure(figsize=(12, 8))
-ax = fig.add_subplot(111, projection='3d')
+#%%
 
-# Original surface plot
-surf = ax.plot_surface(X, Y, Z, cmap='viridis', edgecolor='k', alpha=0.5)
+fig = plt.figure(figsize=(20, 12))
+plt.rcParams['font.size'] = 15
 
-# Fitted polynomial surface plot
-ax.plot_surface(X, Y, Z_fit, color='r', alpha=0.5, edgecolor='k')
+# First subplot: original scatter
+ax1 = fig.add_subplot(1, 2, 1, projection='3d')
+scatter = ax1.scatter(X_flat_valid, Y_flat_valid, Z_flat_valid, c=Z_flat_valid, cmap='viridis', s=10)
+ax1.set_xlabel('X Index')
+ax1.set_ylabel('Y Index')
+ax1.set_zlabel('Signal Strength')
+#ax1.set_title('Original Scatter')
+ax1.text2D(0.5, -0.15, '(a)', transform=ax1.transAxes, ha='center')
+fig.colorbar(scatter, ax=ax1, shrink=0.5, aspect=10)
 
-# Labels and title
-ax.set_xlabel('X Index')
-ax.set_ylabel('Y Index')
-ax.set_zlabel('Average Displacement')
-ax.set_title('3D Surface Plot with Polynomial Fit')
-
-# Color bar
-fig.colorbar(surf, shrink=0.5, aspect=5)
+# Second subplot: polynomial fit
+ax2 = fig.add_subplot(1, 2, 2, projection='3d')
+Z_fit_flat = poly_2d(X_flat_valid, Y_flat_valid, *popt)
+scatter_fit = ax2.scatter(X_flat_valid, Y_flat_valid, Z_fit_flat, color='r', s=2, alpha=0.5)
+ax2.set_xlabel('X Index')
+ax2.set_ylabel('Y Index')
+#ax2.set_zlabel('Signal Strength')
+#ax2.set_title('Polynomial Fit')
+ax2.text2D(0.5, -0.02, '(b)', transform=ax2.transAxes, ha='center')
 
 # Show plot
+plt.tight_layout()
 plt.show()
+
+#%%
+
+fig_a = go.Figure()
+fig_b = go.Figure()
+
+fig_a.add_trace(go.Scatter3d(
+    x=X_flat_valid,
+    y=Y_flat_valid,
+    z=Z_flat_valid,
+    mode='markers',
+    marker=dict(size=3, color=Z_flat_valid, colorscale='Viridis', colorbar=dict(title='Signal')),
+    name='Original Scatter'
+))
+
+# Second subplot: polynomial fit
+Z_fit_flat = poly_2d(X_flat_valid, Y_flat_valid, *popt)
+fig_b.add_trace(go.Scatter3d(
+    x=X_flat_valid,
+    y=Y_flat_valid,
+    z=Z_fit_flat,
+    mode='markers',
+    marker=dict(size=2, color='red', opacity=0.5),
+    name='Polynomial Fit'
+))
+
+fig_a.update_layout(
+    scene=dict(
+        xaxis_title='X Index',
+        yaxis_title='Y Index',
+        zaxis_title='Signal Strength'
+    ),
+    margin=dict(l=0, r=0, b=0, t=40),
+    title='Scatter'
+)
+
+fig_b.update_layout(
+    scene=dict(
+        xaxis_title='X Index',
+        yaxis_title='Y Index',
+        zaxis_title='Signal Strength'
+    ),
+    margin=dict(l=0, r=0, b=0, t=40),
+    title='PolyFit'
+)
+
+# Export to HTML
+pio.write_html(fig_a, file='HTMLs/Scatter.html', auto_open=True)
+pio.write_html(fig_b, file='HTMLs/PolyFit.html', auto_open=True)
+

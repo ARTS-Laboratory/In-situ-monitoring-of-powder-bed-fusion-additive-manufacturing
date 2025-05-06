@@ -9,9 +9,9 @@ import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
+#from mpl_toolkits.mplot3d import Axes3D
 from scipy.optimize import curve_fit
-from scipy.ndimage import gaussian_filter
+#from scipy.ndimage import gaussian_filter
 
 # Folder path
 #folder_path = r"G:\Measurement24"
@@ -105,7 +105,7 @@ popt, _ = curve_fit(lambda xy, a, b, c, d, e, f: poly_2d(xy[0], xy[1], a, b, c, 
 # Create a grid of fitted Z values
 Z_fit = poly_2d(X, Y, *popt)
 
-
+'''
 #heatmap
 plt.figure(figsize=(10, 8))
 plt.imshow(heatmap_avg_displacement, cmap='viridis', interpolation='nearest', vmin=0, vmax=2)
@@ -114,9 +114,11 @@ plt.title('100x100 Signal Strength Heatmap with Pulser Off')
 plt.xlabel('X')
 plt.ylabel('Y')
 plt.show()
+'''
 
 # Plot 3D Surface
 fig = plt.figure(figsize=(12, 8))
+plt.rcParams['font.size'] = 15
 ax = fig.add_subplot(111, projection='3d')
 
 # Original surface plot
@@ -130,8 +132,8 @@ Z_fit_flat = poly_2d(X_flat_valid, Y_flat_valid, *popt)
 # Labels and title
 ax.set_xlabel('X Index')
 ax.set_ylabel('Y Index')
-ax.set_zlabel('Average Displacement')
-ax.set_title('3D Surface Plot with Polynomial Fit')
+ax.set_zlabel('Signal Strength')
+#ax.set_title('3D Surface Plot with Polynomial Fit')
 
 # Color bar
 ###fig.colorbar(surf, shrink=0.5, aspect=5)

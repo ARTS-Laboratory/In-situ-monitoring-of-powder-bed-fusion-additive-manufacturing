@@ -30,7 +30,6 @@ def load_waveform(filename, fs):
 
     return time, signal
 
-
 fs = 2500000000  # Sampling frequency (Hz)
 
 # file names
@@ -46,56 +45,31 @@ time_ldv3, signal_ldv3 = load_waveform(ldv_3, fs)
 time_ldv5, signal_ldv5 = load_waveform(ldv_5, fs)
 time_ldv7, signal_ldv7 = load_waveform(ldv_7, fs)
 
-
 time_trigger, signal_trigger = load_waveform(trigger_filename, fs)
 
 rows = 5
 
-#make figure
-plt.figure(figsize=(20, 12))
-plt.rcParams['font.family'] = 'Times New Roman'
-plt.rcParams['font.size'] = 20
+# Primary axis for LDV signals
+fig, ax1 = plt.subplots(figsize=(20, 6))
+ax1.plot(time_ldv1 * 1e6, signal_ldv1, label='LDV 1 (90°)', color='c')
+ax1.plot(time_ldv3 * 1e6, signal_ldv3, label='LDV 3 (88°)', color='b')
+ax1.plot(time_ldv5 * 1e6, signal_ldv5, label='LDV 5 (86°)', color='g')
+ax1.plot(time_ldv7 * 1e6, signal_ldv7, label='LDV 7 (84°)', color='r')
+ax1.set_ylabel("LDV Amplitude (V)")
+ax1.set_ylim(-0.4, 0.4)
+ax1.grid(True)
+ax1.legend(loc='upper left')
 
-# Receiver Output
-plt.subplot(rows, 1, 1)
-plt.plot(time_trigger * 1e6, signal_trigger, color='m')
-plt.ylim(bottom=-1, top=1)
-plt.xlabel("Time (μs)\n(a)")
-plt.ylabel("Amplitude (V)")
-plt.grid()
+# Secondary axis for trigger signal
+ax2 = ax1.twinx()
+ax2.plot(time_trigger * 1e6, signal_trigger, label='Trigger', color='m', linestyle='--')
+ax2.set_ylabel("Trigger Amplitude (V)")
+ax2.set_ylim(-1, 1)
+ax2.legend(loc='upper right')
 
-# LDV 1
-plt.subplot(rows, 1, 2)
-plt.plot(time_ldv1 * 1e6, signal_ldv1, color='c')
-plt.ylim(bottom=-0.35, top=0.35)
-plt.xlabel("Time (μs)\n(b)")
-plt.ylabel("Amplitude (V)")
-plt.grid()
+# Common x-axis
+ax1.set_xlabel("Time (μs)")
 
-# LDV 3
-plt.subplot(rows, 1, 3)
-plt.plot(time_ldv3 * 1e6, signal_ldv3, color='c')
-plt.ylim(bottom=-0.35, top=0.35)
-plt.xlabel("Time (μs)\n(c)")
-plt.ylabel("Amplitude (V)")
-plt.grid()
-
-# LDV 5
-plt.subplot(rows, 1, 4)
-plt.plot(time_ldv5 * 1e6, signal_ldv5, color='c')
-plt.ylim(bottom=-0.35, top=0.35)
-plt.xlabel("Time (μs)\n(d)")
-plt.ylabel("Amplitude (V)")
-plt.grid()
-
-# LDV 7
-plt.subplot(rows, 1, 5)
-plt.plot(time_ldv7 * 1e6, signal_ldv7, color='c')
-plt.ylim(bottom=-0.35, top=0.35)
-plt.xlabel("Time (μs)\n(e)")
-plt.ylabel("Amplitude (V)")
-plt.grid()
-
-# Adjust layout and show plot
+plt.title("Receiver Output vs LDV Data at Different")
 plt.tight_layout()
 plt.show()
