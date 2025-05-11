@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from scipy.signal import butter, filtfilt
 
 # Folder path
-folder_path = r"C:\Users\mwhetham\Desktop\LayerV5Data\Test5(NEW)"
+folder_path = r"C:\Users\mwhetham\Desktop\signal strength data\LayerScanV6 Experiments\Experiment1"
 max_frequencies = []
 average_amplitudes = []
 
@@ -47,7 +47,7 @@ for file in os.listdir(folder_path):
         
         # Sampling interval and rate (from the time data)
         dt = np.mean(np.diff(time))
-        sampling_rate = 1 / dt
+        sampling_rate = 2500000000
         print(f"Sampling rate for {file}: {sampling_rate} Hz")
         
         # FFT computation on the filtered data

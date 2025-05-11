@@ -35,8 +35,8 @@ def load_waveform(filename, fs):
 fs = 2500000000  # Sampling frequency (Hz)
 
 # file names
-ldv_filename = r"G:\Trigger (pulser) and Wave Signal (LDV) read from PXI\ldv-000-000-"
-trigger_filename = r"G:\Trigger (pulser) and Wave Signal (LDV) read from PXI\trigger-000-000-"
+ldv_filename = r"C:\Users\mwhetham\Desktop\signal strength data\Experiment9\point-009-034-"
+trigger_filename = r"C:\Users\mwhetham\Desktop\signal strength data\wfms\point-000-000-"
 
 # Load data
 time_ldv, signal_ldv = load_waveform(ldv_filename, fs)
