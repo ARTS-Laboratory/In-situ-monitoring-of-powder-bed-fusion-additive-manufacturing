@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from scipy.fft import fft, fftfreq
 
 # --- User Settings ---
-CSV_FILE = r"C:\Users\mwhetham\Desktop\Trigger (pulser) and Wave Signal (LDV) read from PXI\Wave signals (NEW)\ldv(90)-000-000-"  # Your CSV file name
+CSV_FILE = r"C:\Users\mwhetham\Desktop\signal strength data\Cube4 Scan_V\point-099-099-"
 SAMPLING_RATE = 2500000000  # Hz, change this to your desired sampling rate
 X_AXIS_SCALE = 'log'  # Options: 'linear', 'log'
 X_MIN = None # Set to a number or None
@@ -42,7 +42,7 @@ else:
 
 plt.xlabel('Frequency (Hz)')
 plt.ylabel('Amplitude')
-plt.title('90 degree incidence from LDV')
+plt.title('point (99,99)')
 plt.grid(True, which='both')
 
 if X_MIN is not None or X_MAX is not None:

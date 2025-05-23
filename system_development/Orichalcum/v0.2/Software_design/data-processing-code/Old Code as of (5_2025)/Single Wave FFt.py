@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from scipy.fftpack import fft
 
 # Load the LabVIEW file
-filename = r"C:\Users\mwhetham\Desktop\LayerV5Data\Test4\Trial_1-000-000-"
+filename = r"C:\Users\mwhetham\Desktop\signal strength data\Experiment9\point-009-034-"
 with open(filename, 'r') as file:
     lines = file.readlines()
 
@@ -31,7 +31,7 @@ signal = data['Signal'].values  # Second column is the waveform
 
 # Perform FFT
 N = len(signal)  # Number of samples
-T = (1/2500000000)  # Sampling interval
+T = (2500000000)  # Sampling interval
 freqs = np.fft.fftfreq(N, d=T)
 y_fft = fft(signal)
 amplitudes = np.abs(y_fft)[:N // 2]  # Take only positive frequencies

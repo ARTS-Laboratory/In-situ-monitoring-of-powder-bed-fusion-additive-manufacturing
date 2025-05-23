@@ -7,10 +7,14 @@ from scipy.optimize import curve_fit
 from scipy.ndimage import gaussian_filter
 import plotly.graph_objects as go
 import plotly.io as pio
+import timeit
 
-folder_path = r"C:\Users\mwhetham\Desktop\signal strength data\Experiment7"
+start = timeit.timeit()*1000
 
-heatmap_dim = (100,100)
+folder_path = r"C:\Users\mwhetham\Desktop\signal strength data\Experiment12"
+print(folder_path)
+
+heatmap_dim = (50,50)
 total_required = heatmap_dim[0] * heatmap_dim[1]
 
 average_displacements = []
@@ -149,6 +153,10 @@ fig_b.update_layout(
 )
 
 # Export to HTML
-pio.write_html(fig_a, file='HTMLs/Scatter.html', auto_open=True)
-pio.write_html(fig_b, file='HTMLs/PolyFit.html', auto_open=True)
+pio.write_html(fig_a, file='HTMLs/Scatter_E12.html', auto_open=True)
+pio.write_html(fig_b, file='HTMLs/PolyFit_E12.html', auto_open=True)
+
+#%%
+end = timeit.timeit()*1000
+print(end - start)
 

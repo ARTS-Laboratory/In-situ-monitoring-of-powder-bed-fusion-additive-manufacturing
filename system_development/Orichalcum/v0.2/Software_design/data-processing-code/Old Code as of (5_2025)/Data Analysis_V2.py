@@ -10,13 +10,13 @@ import pandas as pd
 from pathlib import Path
 import matplotlib.pyplot as plt
 
-directory = "C:/GitHub/In-situ-monitoring-of-powder-bed-fusion-additive-manufacturing/system_development/Orichalcum/v0.2/Software_design/v2-cover-control/Data/"
+directory = r"C:\Users\mwhetham\Desktop\signal strength data\Cube4 Scan_V"
 print(Path.home())
 
 max_frequencies = []
 
-for i in range(0, 25):
-    data_file = f"DATA-00{i}_001.lvm" if i < 5 else f"DATA-{i}_001.lvm"
+for i in range(0, 99):
+    data_file = f"point-00{i}_00{i}.lvm" if i < 9 else f"point-0{i}_0{i}.lvm"
     file_path = Path(directory, data_file)
     
     data = pd.read_csv(file_path, delimiter=',', skiprows=21, comment=';', header=0)
