@@ -5,14 +5,15 @@ import matplotlib.pyplot as plt
 
 # Folder path
 
-folder_path = r"C:\Users\mwhetham\Desktop\signal strength data\Experiment5(NEW)\SODTest1"
+folder_path = r"C:\Users\mwhetham\Desktop\signal strength data\Experiment9"
 # Target heatmap dimensions
-heatmap_dim = (84,100)
+heatmap_dim = (60,60)
 
 
 total_required = heatmap_dim[1] * heatmap_dim[0]
 
-average_displacements = []
+average_sig = []
+
 
 # Loop through each file in the directory
 i = 0
@@ -22,42 +23,41 @@ for file in sorted(os.listdir(folder_path)):  # Sorting ensures consistent order
     try:
         # Read the file
         data = pd.read_csv(file_path, skiprows=24, header=None)
-        
-        displacement = data.values[:, 1]  # Displacement column
+        Sigstrength = data.values[:, 1]
+        displacement = data.values[:, 2]  # Displacement column
         
         # Compute average displacement
-        avg_displacement = np.mean(displacement)
-        #if  avg_displacement >= 1.9:
-            #velocity = data.values[:, 2]
-            #time= data.values[:,0]
-            #plt.figure(figsize=(10, 5))
-            #plt.plot(time, velocity, label="Waveform")
-            #plt.xlabel("Time (μs)")
-            #plt.ylabel("Amplitude")
-            #plt.title("Wave")
-            #plt.legend()
+        avg_signal = np.mean(Sigstrength)
+        if  avg_signal >= 1.75:
+            time= data.values[:,0]
+            plt.figure(figsize=(10, 5))
+            plt.plot(time, displacement, label="displacement")
+            plt.xlabel("Time (μs)")
+            plt.ylabel("Amplitude")
+            plt.title(f"{file}, {avg_signal}")
+            plt.legend()
             #plt.grid()
             #plt.show()
-            #print('this one')
-        #else:
-            #avg_displacement = avg_displacement 
-        average_displacements.append(avg_displacement)
-        print (i)
+            print('this one')
+        else:
+            print(f'no, {i}')
+        average_sig.append(avg_signal)
+        #print (i)
         i = i + 1
 
     except Exception as e:
         print(f"Error processing {file}: {e}")
 
 # Handle cases where we have too many or too few files
-if len(average_displacements) < total_required:
+if len(avg_signal) < total_required:
     # Pad with NaNs if there are fewer values than needed
-    average_displacements += [np.nan] * (total_required - len(average_displacements))
-elif len(average_displacements) > total_required:
+    avg_signal += [np.nan] * (total_required - len(avg_signal))
+elif len(avg_signal) > total_required:
     # Trim extra values if more than needed
-    average_displacements = average_displacements[:total_required]
+    avg_signal = avg_signal[:total_required]
 
 # Reshape to 51x51
-heatmap_avg_displacement = np.array(average_displacements).reshape(heatmap_dim)
+heatmap_avg_displacement = np.array(avg_signal).reshape(heatmap_dim)
 
 # Plot heatmap of average displacements
 plt.figure(figsize=(10, 8))
