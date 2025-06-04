@@ -14,10 +14,10 @@ from scipy.ndimage import gaussian_filter
 from numpy.polynomial.polynomial import Polynomial
 
 # Folder path
-folder_path = r"G:\Measurement24"
+folder_path = r"C:\Users\mwhetham\Desktop\signal strength data\LayerScanV6 Experiments\Experiment5"
 
 # Target heatmap dimensions
-heatmap_dim = (86, 86)
+heatmap_dim = (100,100)
 total_required = heatmap_dim[0] * heatmap_dim[1]
 
 average_displacements = []
