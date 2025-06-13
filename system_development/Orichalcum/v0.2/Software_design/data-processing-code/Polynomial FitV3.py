@@ -1,3 +1,6 @@
+# signal strength 3D scatter and 3D polynomial fit
+# saves HTML files of interactive plots
+
 import os
 import pandas as pd
 import numpy as np
@@ -11,10 +14,10 @@ import timeit
 
 start = timeit.timeit()*1000
 
-folder_path = r"C:\Users\mwhetham\Desktop\signal strength data\Experiment12"
+folder_path = r"C:\Users\mwhetham\Desktop\signal strength data\Experiment Steel Sheet 2"
 print(folder_path)
 
-heatmap_dim = (50,50)
+heatmap_dim = (40,40)
 total_required = heatmap_dim[0] * heatmap_dim[1]
 
 average_displacements = []
@@ -153,10 +156,10 @@ fig_b.update_layout(
 )
 
 # Export to HTML
-pio.write_html(fig_a, file='HTMLs/Scatter_E12.html', auto_open=True)
-pio.write_html(fig_b, file='HTMLs/PolyFit_E12.html', auto_open=True)
+pio.write_html(fig_a, file='HTMLs/Scatter_SteelSheet2.html', auto_open=True)
+pio.write_html(fig_b, file='HTMLs/PolyFit_Steet Sheet2.html', auto_open=True)
 
 #%%
 end = timeit.timeit()*1000
-print(end - start)
+print('Runtime =', end - start)
 
