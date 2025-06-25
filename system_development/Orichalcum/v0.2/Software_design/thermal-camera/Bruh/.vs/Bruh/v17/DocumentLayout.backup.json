@@ -1,0 +1,38 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\mayhe\\OneDrive\\Documents\\GitHub\\In-situ-monitoring-of-powder-bed-fusion-additive-manufacturing\\system_development\\Orichalcum\\v0.2\\Software_design\\thermal-camera\\Bruh\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{54206A0B-FC15-4476-A576-E19B7B230C2A}|Bruh.vcxproj|C:\\Users\\mayhe\\OneDrive\\Documents\\GitHub\\In-situ-monitoring-of-powder-bed-fusion-additive-manufacturing\\system_development\\Orichalcum\\v0.2\\Software_design\\thermal-camera\\Bruh\\Wrapper.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{54206A0B-FC15-4476-A576-E19B7B230C2A}|Bruh.vcxproj|solutionrelative:Wrapper.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Wrapper.c",
+              "DocumentMoniker": "C:\\Users\\mayhe\\OneDrive\\Documents\\GitHub\\In-situ-monitoring-of-powder-bed-fusion-additive-manufacturing\\system_development\\Orichalcum\\v0.2\\Software_design\\thermal-camera\\Bruh\\Wrapper.c",
+              "RelativeDocumentMoniker": "Wrapper.c",
+              "ToolTip": "C:\\Users\\mayhe\\OneDrive\\Documents\\GitHub\\In-situ-monitoring-of-powder-bed-fusion-additive-manufacturing\\system_development\\Orichalcum\\v0.2\\Software_design\\thermal-camera\\Bruh\\Wrapper.c",
+              "RelativeToolTip": "Wrapper.c",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-05-30T19:01:21.398Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

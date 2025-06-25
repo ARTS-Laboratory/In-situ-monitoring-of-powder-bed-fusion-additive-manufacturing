@@ -1,9 +1,14 @@
+#input: file folder, heatmap dimensions
+#operation: FFT of velocity data
+#output: relative power of the max frequencies
+#figure: heatmap of max frequencies
+
 import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-directory = r"C:\Users\mwhetham\Desktop\signal strength data\LayerScanV6 Experiments\Experiment1"
+directory = r"C:\Users\mwhetham\Desktop\signal strength data\LayerScanV6 Experiments\Experiment2"
 print(directory)
 fs = 2.5e9  # Sampling frequency in Hz
 
@@ -24,7 +29,7 @@ def load_signal(filepath):
         try:
             values = line.strip().split(',')
             if len(values) >= 2:
-                data.append(float(values[1]))  # signal only
+                data.append(float(values[2]))  # signal only
         except ValueError:
             continue
 

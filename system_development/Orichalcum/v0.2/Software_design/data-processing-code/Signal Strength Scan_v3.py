@@ -1,3 +1,6 @@
+#input: signal data file folder, heatmap dimensions
+#output: signal strength heatmap
+
 import os
 import pandas as pd
 import numpy as np
@@ -5,9 +8,9 @@ import matplotlib.pyplot as plt
 
 # Folder path
 
-folder_path = r"C:\Users\mwhetham\Desktop\signal strength data\Experiment9"
+folder_path = r"C:\Users\mwhetham\Desktop\signal strength data\LayerScanV6 Experiments\Experiment5"
 # Target heatmap dimensions
-heatmap_dim = (60,60)
+heatmap_dim = (100,100)
 
 
 total_required = heatmap_dim[1] * heatmap_dim[0]
@@ -24,14 +27,14 @@ for file in sorted(os.listdir(folder_path)):  # Sorting ensures consistent order
         # Read the file
         data = pd.read_csv(file_path, skiprows=24, header=None)
         Sigstrength = data.values[:, 1]
-        displacement = data.values[:, 2]  # Displacement column
+        #displacement = data.values[:, 2]  # Displacement column
         
         # Compute average displacement
         avg_signal = np.mean(Sigstrength)
         if  avg_signal >= 1.75:
             time= data.values[:,0]
             plt.figure(figsize=(10, 5))
-            plt.plot(time, displacement, label="displacement")
+           # plt.plot(time, displacement, label="displacement")
             plt.xlabel("Time (μs)")
             plt.ylabel("Amplitude")
             plt.title(f"{file}, {avg_signal}")
@@ -42,7 +45,7 @@ for file in sorted(os.listdir(folder_path)):  # Sorting ensures consistent order
         else:
             print(f'no, {i}')
         average_sig.append(avg_signal)
-        #print (i)
+        print (i)
         i = i + 1
 
     except Exception as e:
@@ -63,7 +66,7 @@ heatmap_avg_displacement = np.array(avg_signal).reshape(heatmap_dim)
 plt.figure(figsize=(10, 8))
 plt.imshow(heatmap_avg_displacement, cmap='viridis', interpolation='nearest', vmin=0, vmax=2)
 plt.colorbar(label='Average Displacement')
-plt.title('100x100 Signal Strength Heatmap with Pulser Off')
+#plt.title('100x100 Signal Strength Heatmap with Pulser Off')
 plt.xlabel('X')
 plt.ylabel('Y')
 plt.show()

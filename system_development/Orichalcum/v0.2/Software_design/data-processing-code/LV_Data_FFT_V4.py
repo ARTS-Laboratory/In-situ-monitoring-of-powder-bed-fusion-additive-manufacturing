@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Apr 26 16:58:57 2025
-
-@author: MWHETHAM
-"""
+#FFT on log scale of velocity data at a point
 
 import numpy as np
 import pandas as pd
@@ -15,13 +10,13 @@ CSV_FILE = r"C:\Users\mwhetham\Desktop\signal strength data\Cube4 Scan_V\point-0
 SAMPLING_RATE = 2500000000  # Hz, change this to your desired sampling rate
 X_AXIS_SCALE = 'log'  # Options: 'linear', 'log'
 X_MIN = None # Set to a number or None
-X_MAX = None  # Set to a number or None
-Y_MIN = None  # Set to a number or None
-Y_MAX = None  # Set to a number or None
+X_MAX = None 
+Y_MIN = None
+Y_MAX = None
 
 # --- Load Data ---
 data = pd.read_csv(CSV_FILE, skiprows=24, header=None)
-y = data.iloc[:, 1].values  # Assuming second column is the signal
+y = data.iloc[:, 1].values  #use signal data
 n = len(y)
 
 # --- FFT Computation ---

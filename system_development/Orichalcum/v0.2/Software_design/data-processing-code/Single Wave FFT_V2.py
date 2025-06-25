@@ -1,9 +1,6 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat May 10 12:25:43 2025
-
-@author: MWHETHAM
-"""
+#input: velocity data at a point
+#operation: reconstructs waveform and performs FFT
+#figure: waveform plot and FFT plot
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -18,7 +15,7 @@ def load_lvm_file(filepath):
         if '***End_of_Header***' in line:
             header_count += 1
             if header_count == 2:
-                data_start = i + 1
+                data_start = i + 15000
                 break
 
     # Read data (expecting: time, signal1, signal2, comment)
@@ -30,7 +27,7 @@ def load_lvm_file(filepath):
         if len(parts) >= 2:
             try:
                 t = float(parts[0])
-                s = float(parts[1])  # Use column 3 (index 2)
+                s = float(parts[2])  # Use column 3 (index 2)
                 time.append(t)
                 signal.append(s)
             except ValueError:
@@ -102,7 +99,7 @@ def plot_lvm_time_series_with_fft(filepath, fs, t_min=None, t_max=None, title="T
     plt.show()
 
 fs = 2.5e9  # Sampling rate (Hz)
-filename = r"C:\Users\mwhetham\Desktop\signal strength data\LayerScanV6 Experiments\Experiment1\point-025-009-"
+filename = r"C:\Users\mwhetham\Desktop\signal strength data\LayerScanV6 Experiments\Experiment2\point-016-016-"
 
 # Plot with optional time window from 0.5 µs to 1.5 µs
 plot_lvm_time_series(filename, fs, t_min=2e-5, t_max=8e-5)
