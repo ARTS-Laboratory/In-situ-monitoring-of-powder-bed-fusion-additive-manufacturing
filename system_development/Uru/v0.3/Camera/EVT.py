@@ -1,64 +1,55 @@
+#EVT.py
+#By: Jackie Yang
+#Supposedly a python automation to convert a .raw file from the event camera into a .csv file. Who knows
+
+
 import subprocess
 import os
 
-##### Defs
-def code_cleaner(old_PS_code_combo):
-    combo_PS_code = ' '.join(old_PS_code_combo)
-    cleaner = combo_PS_code.replace(',','').replace("'","").replace("(","").replace(")","")
-    return cleaner
-
-def run(cmd):
-    completed = subprocess.run(["powershell", "-Command", cmd], capture_output=True, text=True)
-    return completed
+###Helper Functions
+def inp(text:str="",validResponses=[],outputType=str):
+    while True:
+        if len(validResponses) == 0:
+            try:
+                response = input(text)
+                return outputType(response) #try catches this
+            except ValueError:
+                print("Invalid response, try again!")
+        else:
+            try:
+                response = input(text)
+                if response.lower() in validResponses: #i'm just assuming that the valid responses are in lowercase
+                    return outputType(response.lower()) #it'll return the lowercase version of it
+                else:
+                    raise ValueError 
+            except ValueError:
+                print("Invalid response, try again!")
 
 def getFile(fileType,text=""):
     while True:
         inp = input(text).strip("\"") #assuming that your file name doesn't have " on them
-        if os.path.exists(inp) and os.path.splitext(inp)[-1].lower() == fileType:
-            return inp
-        else:
-            print("Something's wrong, try again.")
-        
-##### Printing
-##### Defult Locations
-file_answer = input("Are you files in the expected location?\nNote: must be the exact same as mine and type yes or no\n")
-
-if file_answer.lower() == "yes":
-    evt3_answer = input("Do you want to convert .raw into evt3.0? ")
-
-    if evt3_answer.lower() == "yes":
-        new_exe = getFile(".raw","Enter the file path: ")
-    else:
-        new_exe = getFile(".exe","First copy the path of the .exe file you want to use: ")
+        try:
+            if os.path.exists(inp) and os.path.splitext(inp)[-1].lower() == fileType:
+                return inp
+            elif fileType == "folder" and os.path.isdir(inp): #user will have to use this parameter. previous attempt was using a bool parameter
+                return inp
+            else:
+                raise Exception("File cannot be found, try again")
+        except:
+            print("Invalid file! Try again!")
+###Code
+if inp("Are your paths default?\nyes or no: ",["yes","no"]) == "yes":
+    csvLocation = "C:\Users\CBUREN\Desktop\Metavision\CSV"
+    exeFile = "C:\Users\CBUREN\Documents\GitHub\openeb\build\bin\Release\metavision_evt3_raw_file_decoder.exe"
+    rawFile = "" #Charlie, put .raw file here
 else:
-    new_exe = getFile(".exe","First copy the path of the .exe file you want to use: ")
+    csvLocation = getFile("folder","Enter the folder where the .csv file will be located: ")
+    exeFile = getFile(".exe","Enter the exe file: ")
+    rawFile = getFile(".raw","Enter the raw file: ")
 
-# output location (if needed .replace("\\","\\\\"))
+csvFile = inp("Name your .csv file: ") + ".csv"
 
-csv_location_unclean = input("What folder do you want the excel file in? ")
-csv_location = csv_location_unclean.replace('"','')
-os.chdir(csv_location)
+os.chdir(csvLocation)
 print("New directory: ", os.getcwd())
 
-print("\nEnsure that all the paths are absolute not relative")
-
-# .exe
-new_exe = getFile(".exe","First copy the path of the .exe file you want to use: ")
-
-# .raw
-new_raw = getFile(".raw","Next where is the .raw file located:")
-
-# excel file
-excel = input("What do you want to name the excel file: ") + ".csv"
-
-old_PS_code = (new_exe, new_raw, excel)
-
-new_PS_code = code_cleaner(old_PS_code)
-print(new_PS_code)
-
-##### CMD
-PS_code = run(new_PS_code)
-if PS_code.returncode != 0:
-    print("An error occured: %s", PS_code.stderr)
-else:
-    print(".csv made successfully!")
+command = subprocess.run(["powershell","-Command",exeFile,rawFile,csvFile],capture_output=True,text=True)
