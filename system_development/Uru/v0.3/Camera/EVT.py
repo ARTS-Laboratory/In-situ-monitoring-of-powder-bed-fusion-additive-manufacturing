@@ -2,12 +2,11 @@
 #By: Jackie Yang
 #Supposedly a python automation to convert a .raw file from the event camera into a .csv file. Who knows
 
-
 import subprocess
 import os
 
 ###Helper Functions
-def inp(text:str="",validResponses=[],outputType=str):
+def inp(text:str="", validResponses=[], outputType=str):
     while True:
         if len(validResponses) == 0:
             try:
@@ -21,7 +20,7 @@ def inp(text:str="",validResponses=[],outputType=str):
                 if response.lower() in validResponses: #i'm just assuming that the valid responses are in lowercase
                     return outputType(response.lower()) #it'll return the lowercase version of it
                 else:
-                    raise ValueError 
+                    raise ValueError
             except ValueError:
                 print("Invalid response, try again!")
 
@@ -34,13 +33,14 @@ def getFile(fileType,text=""):
             elif fileType == "folder" and os.path.isdir(inp): #user will have to use this parameter. previous attempt was using a bool parameter
                 return inp
             else:
-                raise Exception("File cannot be found, try again")
+                raise Exception("File cannot be found, try again") #no idea
         except:
             print("Invalid file! Try again!")
+
 ###Code
 if inp("Are your paths default?\nyes or no: ",["yes","no"]) == "yes":
-    csvLocation = "C:\Users\CBUREN\Desktop\Metavision\CSV"
-    exeFile = "C:\Users\CBUREN\Documents\GitHub\openeb\build\bin\Release\metavision_evt3_raw_file_decoder.exe"
+    csvLocation = "C:\\Users\\CBUREN\\Desktop\\Metavision\\CSV"
+    exeFile = "C:\\Users\\CBUREN\\Documents\\GitHub\\openeb\\build\\bin\\Release\\metavision_evt3_raw_file_decoder.exe"
     rawFile = "" #Charlie, put .raw file here
 else:
     csvLocation = getFile("folder","Enter the folder where the .csv file will be located: ")
