@@ -3,7 +3,7 @@ Different system variations (i.e. product lines) are named after mythical materi
 
 ## Mithril
 * A legendary, lightweight, and strong metal from Tolkien’s Middle-earth.
-* Sensing system designed with a optical camera.
+* Sensing system designed with a OPTICAL CAMERA.
 
 <img src="media/duck.JPG" alt="drawing" width="300"/> <br> 
 The CAD model of in situ systems for laser-based powder bed fusion additive manufacturing. 
@@ -13,7 +13,7 @@ The CAD model of in situ systems for laser-based powder bed fusion additive manu
 
 ## Adamant
 * An ancient term for an unbreakable, diamond-like substance.
-* Sensing system designed with a thermal camera.
+* Sensing system designed with a THERMAL CAMERA.
 
 <img src="media/duck.JPG" alt="drawing" width="300"/> <br> 
 The CAD model of in situ systems for laser-based powder bed fusion additive manufacturing. 
@@ -23,7 +23,7 @@ The CAD model of in situ systems for laser-based powder bed fusion additive manu
 
 ## Uru
 * A mystical Asgardian metal, known for its magical properties.
-* Sensing system designed with an event camera.
+* Sensing system designed with an EVENT CAMERA.
 
 <img src="media/duck.JPG" alt="drawing" width="300"/> <br> 
 The CAD model of in situ systems for laser-based powder bed fusion additive manufacturing. 
@@ -33,7 +33,7 @@ The CAD model of in situ systems for laser-based powder bed fusion additive manu
 
 ## Orichalcum
 * A lost golden-red metal from Atlantis and Greek mythology.
-* Sensing system designed with a laser vibrometer.
+* Sensing system designed with a LASER VIBROMETER.
 
 <img src="media/Orichalcum.JPG" alt="drawing" width="300"/> <br> 
 Experimental setup including custom cover assembly, laser vibrometer, piezoelectric transducer, and pulser. 
