@@ -41,7 +41,7 @@ def getFile(fileType,text=""):
 if inp("Are your paths default?\nyes or no: ",["yes","no"]) == "yes":
     csvLocation = "C:\\Users\\CBUREN\\Desktop\\Metavision\\CSV"
     exeFile = "C:\\Users\\CBUREN\\Documents\\GitHub\\openeb\\build\\bin\\Release\\metavision_evt3_raw_file_decoder.exe"
-    rawFile = "" #Charlie, put .raw file here
+    rawFile = getFile(".raw","Enter the raw file: ")
 else:
     csvLocation = getFile("folder","Enter the folder where the .csv file will be located: ")
     exeFile = getFile(".exe","Enter the exe file: ")
