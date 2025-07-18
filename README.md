@@ -18,7 +18,7 @@ The Camera setup of in situ systems for laser-based powder bed fusion additive m
 
 <p align="center">
 <img src="media/cabinetwithcovers.jpg" alt="drawing" width="700"/> <br> 
-Cabinet displaying up to date versions of assembled covers.The following covers in a top-to-bottom arrangement: Uru, Adamant, Mithril, and Damascus. 
+Cabinet displaying up to date versions of assembled covers. The following covers in a top-to-bottom arrangement: Uru, Adamant, Mithril, and Damascus. 
 </p>
 <p align="center">
 </p>
