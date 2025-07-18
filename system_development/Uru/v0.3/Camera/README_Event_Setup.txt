@@ -90,6 +90,7 @@ Note if you want you can use CMake for the compilation, but I didn't test this
 	9.2 As an administer launch CMD then enter: "wdi-simple.exe -n "EVK" -m "Prophesee" -v 0x04b4 -p 0x00f4
 wdi-simple.exe -n "EVK" -m "Prophesee" -v 0x04b4 -p 0x00f5
 wdi-simple.exe -n "EVK" -m "Prophesee" -v 0x04b4 -p 0x00f3"
+	9.3 Find setup.bat (ex: <openeb>\build\generated
 
 10. Run Tests
 	10.1 Download OpenEB test data (it is 1.5gb)
