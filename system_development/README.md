@@ -5,8 +5,8 @@ Different system variations (i.e. product lines) are named after mythical materi
 * A legendary, lightweight, and strong metal from Tolkien’s Middle-earth.
 * Sensing system designed with a OPTICAL CAMERA.
 
-<img src="media/duck.JPG" alt="drawing" width="300"/> <br> 
-The CAD model of in situ systems for laser-based powder bed fusion additive manufacturing. 
+<img src="media/optical-mithril.jpg" alt="drawing" width="300"/> <br> 
+Custom cover with a integrated optical camera mount for laser-based powder bed fusion additive manufacturing monitoring. Camera not yet installed.
 </p>
 <p align="center">
 </p>
@@ -15,8 +15,8 @@ The CAD model of in situ systems for laser-based powder bed fusion additive manu
 * An ancient term for an unbreakable, diamond-like substance.
 * Sensing system designed with a THERMAL CAMERA.
 
-<img src="media/duck.JPG" alt="drawing" width="300"/> <br> 
-The CAD model of in situ systems for laser-based powder bed fusion additive manufacturing. 
+<img src="media/thermal-adamant.jpg" alt="drawing" width="300"/> <br> 
+Custom cover with a integrated thermal camera mount for laser-based powder bed fusion additive manufacturing monitoring . 
 </p>
 <p align="center">
 </p>
@@ -25,8 +25,8 @@ The CAD model of in situ systems for laser-based powder bed fusion additive manu
 * A mystical Asgardian metal, known for its magical properties.
 * Sensing system designed with an EVENT CAMERA.
 
-<img src="media/duck.JPG" alt="drawing" width="300"/> <br> 
-The CAD model of in situ systems for laser-based powder bed fusion additive manufacturing. 
+<img src="media/event-uru.jpg" alt="drawing" width="300"/> <br> 
+Custom cover with event camera mount for in-situ monitoring of laser-based powder bed fusion processes.
 </p>
 <p align="center">
 </p>
@@ -45,10 +45,12 @@ Experimental setup including custom cover assembly, laser vibrometer, piezoelect
 * A famed patterned steel, known for strength and sharpness.
 * Sensing system designed with multiple sensing systems.
 
-<img src="media/duck.JPG" alt="drawing" width="300"/> <br> 
-The CAD model of in situ systems for laser-based powder bed fusion additive manufacturing. 
+<img src="media/optical-thermal-damascus.jpg" alt="drawing" width="300"/> <br> 
+<img src="media/underdamascus.jpg" alt="drawing" width="300"/> <br> 
+Integrated dual vision holder securely mounting a thermal camera and an optical camera for synchronized data acquisition on custom cover. 
 </p>
 <p align="center">
 </p>
+
 
 
