@@ -1,0 +1,2 @@
+C:\Users\mayhe\OneDrive\Documents\GitHub\In-situ-monitoring-of-powder-bed-fusion-additive-manufacturing\system_development\Adamant\v0.2\software_development\thermal-camera\VI\labview\generic.xml
+1
