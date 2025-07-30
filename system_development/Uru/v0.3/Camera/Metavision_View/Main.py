@@ -20,6 +20,13 @@ print("New directory: ", os.getcwd())
 print('What do you want to do? Enter 0-9\n0: End Program\n1: Live Stream Camera Feed\n2: Open RAW File\n3: Additional Options')
 input_num = int(input())
 
+'''
+TO DO: 1) Need to make the if statements into cases
+       2) Need to add more
+       3) Need to make more user friendly
+
+'''
+
 while(input_num > 0):
         if(input_num == 1):
              PS_code = run('metavision_viewer.exe')
