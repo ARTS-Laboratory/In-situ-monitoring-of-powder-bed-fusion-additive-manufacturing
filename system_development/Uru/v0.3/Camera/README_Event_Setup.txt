@@ -1,11 +1,24 @@
-------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 
 Created by: Charlie Buren
-Date of last change: 7/30/2025
+Date of last change: 8/01/2025
 
 Note: If you have any questions or concerns please email me at: cburen@email.sc.edu
 
-------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
+
+Video Exporting
+
+1. Using Metavision Studio
+	1) Open the recording that you desire to export to video
+	2) Trim the recording using the options on the toolbar
+	3) If desired change the frame rate of video
+		3.1) 1000 for super slow video
+		3.2) 100 for slowed video
+		3.3) 1 for real time speed
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
 
 Installation guide
 
@@ -145,7 +158,7 @@ wdi-simple.exe -n "EVK" -m "Prophesee" -v 0x04b4 -p 0x00f3
 	3) cmake .. -A x64 -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=C:\School\Research\GitHub\openeb\cmake\toolchains\vcpkg.cmake -DVCPKG_DIRECTORY=C:\School\Research\GitHub\vcpkg -DBUILD_TESTING=OFF
 	4) cmake --build . --config Release --parallel 4
 
-------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 
 Issues:
   - Leave any issues that you may encounter here
