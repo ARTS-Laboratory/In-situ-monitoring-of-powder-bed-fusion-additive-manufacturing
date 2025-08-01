@@ -13,9 +13,9 @@ Video Exporting
 	1) Open the recording that you desire to export to video
 	2) Trim the recording using the options on the toolbar
 	3) If desired change the frame rate of video
-		3.1) 1000 for super slow video
-		3.2) 100 for slowed video
-		3.3) 1 for real time speed
+		3.1) 250 for regular slowed down video
+			- If slower is desired use 300 or 500. 
+		3.2) 1 for real time speed
 
 
 ------------------------------------------------------------------------------------------------------------------------------------------
