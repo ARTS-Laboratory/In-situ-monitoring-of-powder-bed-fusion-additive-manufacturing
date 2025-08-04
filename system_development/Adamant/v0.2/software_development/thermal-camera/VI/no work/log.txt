@@ -1,0 +1,2 @@
+C:\Users\mayhe\OneDrive\Documents\GitHub\In-situ-monitoring-of-powder-bed-fusion-additive-manufacturing\system_development\Orichalcum\v0.2\Software_design\thermal-camera\VI\generic.xml
+1

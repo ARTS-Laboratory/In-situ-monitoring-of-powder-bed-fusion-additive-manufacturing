@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<imager xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <serial>0</serial>                     <!-- Provide serial number, if you attach more than one camera -->
+  <videoformatindex>0</videoformatindex> <!-- index of the used video format resolution and framerate (USB enpoint): http://documentation.evocortex.com/libirimager2/html/index.html#sec_videoformat -->
+  <formatspath>.\</formatspath>
+  <!-- <calipath></calipath> -->
+  <!-- Uncomment the following lines to specify user-defined parameters for the desired optic
+       and temperature range. Be aware to specify meaningful parameters.
+       See documentation for further information: http://documentation.evocortex.com/libirimager2/html/index.html
+       By default, the first available optic and the first meaningful temperature range are selected.
+
+       fov: If the camera is calibrated for multiple optics with different field of views, the fiel of view of the used optic needs to be set here.
+       optics_text: If the camera is calibrated for multiple optics with the same field of view, the additional name of the optic need to be set here.
+       temperature: This value specify the selection of the calibration temperature range. 
+                    Only predefined temperature ranges are valid which can be obtained through the data sheet of your camera or PIX Connect.
+  -->
+  <!--
+  <fov>0</fov>
+  <temperature>
+    <min>-20</min>
+    <max>100</max>
+  </temperature>
+  <optics_text></optics_text>
+  -->
+  <framerate>32.0</framerate>             <!-- only scaled down frame rate, maximum framerate depends on the chosen <videoformatindex> -->
+  <bispectral>0</bispectral>              <!-- 0=only thermal sensor, 1=bispectral technology (only PI200/PI230) -->
+  <autoflag>
+    <enable>1</enable> <!-- 0=Off, 1=On; Enables automatic flag cycle depending on internal camera temperature or time-->
+    <mininterval>15.0</mininterval> <!-- Minimum duration in seconds between flag cycle-->
+    <maxinterval>0.0</maxinterval> <!-- Maximum duration in seconds between flag cycle. Set to 0 to disable.-->
+  </autoflag>
+  <tchipmode>0</tchipmode>                <!-- 0=Floating (default), 1=Auto, 2=Fixed value -->
+  <tchipfixedvalue>40.0</tchipfixedvalue> <!-- Fixed value for tchipmode=2 -->
+  <focus>-1</focus> <!-- position of focus motor in % of range [0; 100]; Set to negative value to disable focus change on startup -->
+  <enable_extended_temp_range>0</enable_extended_temp_range> <!-- 0=Off, 1=On; Caution! Enables invalid extended temp range-->
+  <buffer_queue_size>5</buffer_queue_size> <!-- internal buffer queue size -->
+  <enable_high_precision>0</enable_high_precision> <!-- 0=Off, 1=On; Enables temperatures with more than 1 decimal places. Depends on used camera(IRImager::getTemprangeDecimal()).-->
+  <radial_distortion_correction>0</radial_distortion_correction> <!-- Distortion correction: 0=Off, 1=Normal, 2=Wide -->
+  <use_external_probe>0</use_external_probe> <!-- 0=Off, 1=On; Temperatures values of external probe BR20AR are accessible on PIFs first analog input in °C-->
+
+  <!-- 
+    Uncomment the following lines to connect to a ethernet capable camera device e.g. Xi80 or Xi410
+    <device_api> Must be set to 5 for ethernet device api
+    <device_ip_address> IP-Address of the camera
+    <local_udp_port> Local UDP port on which the camera sends data to (can be configured through PIX Connect)
+    <check_udp_sender_ip> 0=Off, 1=On; If on, checks the sender ip address of the received data to be equal to the configured camera ip address.
+   -->
+  <!-- 
+  <device_api>5</device_api> 
+  <ethernet_device>
+    <device_ip_address>192.168.0.11</device_ip_address>
+    <local_udp_port>50011</local_udp_port>
+    <check_udp_sender_ip>1</check_udp_sender_ip>
+  </ethernet_device>
+  -->
+</imager>
