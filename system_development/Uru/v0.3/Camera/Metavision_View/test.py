@@ -1,2 +1,0 @@
-import metavision_sdk_core
-import metavision_core.event_io
