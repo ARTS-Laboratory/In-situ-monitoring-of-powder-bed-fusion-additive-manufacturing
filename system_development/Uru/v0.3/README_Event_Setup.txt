@@ -3,8 +3,10 @@
 Created by: Charlie Buren
 Date of last change: 8/01/2025
 
-Note: If you have any questions or concerns please email me at: cburen@email.sc.edu
-
+Notes: 
+	- If you have any questions or concerns please email me at: cburen@email.sc.edu
+	- If you don't want to do these steps and just want the .exe's then look in the metavision_executables folder on GitHub. Just make 
+	  make sure to copy them to a new folder so you don't overwrite them on accident. 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
 Video Exporting
