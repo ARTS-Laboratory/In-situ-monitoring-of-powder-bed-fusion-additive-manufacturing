@@ -105,10 +105,12 @@ def exe_folder_location():
 
 # Check if exe has been selected
 def check_exe_selection():
-    if not exe_folder_path:
+    exe_folder = globals().get("exe_folder_path", None)
+    if not exe_folder:
         messagebox.showerror("Missing Folder", "Please select the .exe folder location before continuing.")
         return False
     return True
+
     
 # Popup selection
 def popup_options(title_selection_window, question_ask_str):
