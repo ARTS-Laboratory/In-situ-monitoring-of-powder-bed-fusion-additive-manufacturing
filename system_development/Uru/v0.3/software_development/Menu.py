@@ -13,6 +13,7 @@ ToDo:
 
 Doc:
     - tkinter: https://docs.python.org/3/library/tkinter.html
+    - CSV new header: https://stackoverflow.com/questions/51463449/replace-csv-header-without-deleting-the-other-rows
 
 '''
 
@@ -26,6 +27,7 @@ from tkinter import filedialog #allows for us to open a file
 # Other
 import subprocess
 import os
+import csv
 
 
 ## --- Defs ---
@@ -60,6 +62,20 @@ def PS_Error_Checker_and_Runner(cmd, successful_code_message): # runs the previo
 def clean(cleaner):
      cleaner = cleaner.replace(',','').replace("'","").replace("(","").replace(")","").replace('"','')
      return cleaner
+
+# Replaces the old csv header with a new one
+def csv_cleaner(csv_path, csv_output):
+    header = ["X", "Y", "Output", "Value"]
+    with open(csv_path, 'r') as fp:
+        reader = csv.DictReader(fp, fieldnames=header)
+        
+        # use newline='' to avoid adding new CR at end of line
+        with open(csv_output, 'w', newline='') as fh: 
+            writer = csv.DictWriter(fh, fieldnames=reader.fieldnames)
+            writer.writeheader()
+            header_mapping = next(reader, None)
+            writer.writerows(reader)
+    return
 
 # File selection
 def OpenFile():
@@ -123,19 +139,49 @@ def popup_options(title_selection_window, question_ask_str):
 
 
 # --- Option defs ---
+# Playback raw file only
+def raw_file_playback():
+    raw_playback_name = "metavision_viewer.exe" # exe name
+    mv_raw_playback_path = os.path.join(exe_folder_path, raw_playback_name) # joins path of exe and the exe into one string
+    print(mv_raw_playback_path)
+
+    # Select a file
+    file_path = OpenFile()
+        
+    # Ensure that file has been selected. If no file has been selected then it runs again.
+    try:
+        file_path
+    except:
+        messagebox.showerror("File Selection Error. Try again.")
+        return
+        
+    #ensure that .csv was selected
+    if file_path.lower().endswith(".raw"):
+        cmd = f'& "{mv_raw_playback_path}" -i "{file_path}"'
+        print(cmd) #testing
+
+        #Run the PS code w/ error messages
+        PS_Error_Checker_and_Runner(cmd, "Playback Successful!")
+        return
+        
+    else:
+        messagebox.showerror("Please Select a .raw file")
+        return
+
+    return
+
 # Playback recordings
 def mv_viewer_playback():
-    #adds an error incase no exe folder has been selected. Doesn't crash teh program now
+    #adds an error incase no exe folder has been selected. Doesn't crash the program now
     if not check_exe_selection(): 
         return 
   
     # asks the user if they want to read from a csv or raw file
-    csv_or_raw = popup_options(".raw or .csv?", # title of popup 
-                               "Are you trying to playback recording from a .csv or .raw file? \nYes: Opens .csv file \nNo: Opens .raw file" # question that is asked
-                               )
+    csv_or_raw_popup = popup_options(".raw or .csv?", # title of popup 
+                                     "Are you trying to playback recording from a .csv or .raw file? \nYes: Opens .csv file \nNo: Opens .raw file") # question that is asked
 
     #if statment for yes (.csv) Completed
-    if csv_or_raw: # if yes was entered
+    if csv_or_raw_popup: # if yes was entered
         csv_playback_name = "metavision_csv_viewer.exe" # exe name
         mv_csv_playback_path = os.path.join(exe_folder_path, csv_playback_name) # joins path of exe and the exe into one string
         print(mv_csv_playback_path)
@@ -158,44 +204,17 @@ def mv_viewer_playback():
             #Run the PS code w/ error messages
             PS_Error_Checker_and_Runner(cmd, "Playback Successful!")
             return
-        
         else:
             messagebox.showerror("Please Select a .csv file")
             return
-        
-    else: #if no was entered
-        raw_playback_name = "metavision_viewer.exe" # exe name
-        mv_raw_playback_path = os.path.join(exe_folder_path, raw_playback_name) # joins path of exe and the exe into one string
-        print(mv_raw_playback_path)
-
-        # Select a file
-        file_path = OpenFile()
-        
-        # Ensure that file has been selected. If no file has been selected then it runs again.
-        try:
-            file_path
-        except:
-            messagebox.showerror("File Selection Error. Try again.")
-            return
-        
-        #ensure that .csv was selected
-        if file_path.lower().endswith(".raw"):
-            cmd = f'& "{mv_csv_playback_path}" -i "{file_path}"'
-            print(cmd) #testing
-
-            #Run the PS code w/ error messages
-            PS_Error_Checker_and_Runner(cmd, "Playback Successful!")
-            return
-        
-        else:
-            messagebox.showerror("Please Select a .raw file")
-            return
-        return
+    else:
+        raw_file_playback()
+    return
 
 # Convert .raw file to a .csv in the same location as the raw file
 # Works don't change unless needed
 def raw_to_csv():
-     #adds an error incase no exe folder has been selected. Doesn't crash teh program now
+     #adds an error incase no exe folder has been selected. Doesn't crash the program now
      if not check_exe_selection(): 
          return
      
@@ -224,12 +243,70 @@ def raw_to_csv():
          # Run the PS code. This gives the errors or says if it works
          PS_Error_Checker_and_Runner(cmd, "Conversion Successful!")
 
+         # Adds ML to the csv name 
+         csv_new_output = created_csv.replace('.csv', '_ML.csv')
+         
+         # Cleans the csv and adds the right header
+         csv_cleaner(created_csv, csv_new_output)
+
+         # Deletes the file w/o ML in the name
+         os.remove(created_csv)    
+
      else:
          messagebox.showerror("Please Select a .raw file")
 
+# Trim a recording 
+def mv_trimer():
+    #adds an error incase no exe folder has been selected. Doesn't crash the program now
+    if not check_exe_selection(): 
+        return 
+
+    # Ask if user needs to view recording
+    view_playback_popup = popup_options("Playback Popup", # title of popup window
+                                         "Do you need to view the recording playback?") # question that is asked
+    
+    global view_playback_trimmer_yes_selected # allows for boolean to called anywhere. 
+    
+    # if yes for view_playback_popup is selected 
+    if view_playback_popup:
+        view_playback_trimmer_yes_selected = True
+    else:
+        view_playback_trimmer_yes_selected = False
+
+    # Run the trimmer 
+    trimer_exe_name = "metavision_file_cutter.exe" # exe name
+    mv_trimmer_path = os.path.join(exe_folder_path, trimer_exe_name) # joins path of exe and the exe into one string
+    print(mv_trimmer_path)
+
+    # Select a file
+    file_path = OpenFile()
+        
+    # Ensure that file has been selected. If no file has been selected then it runs again.
+    try:
+        file_path
+    except:
+        messagebox.showerror("File Selection Error. Try again.")
+        return
+        
+    #ensure that .csv was selected
+    if file_path.lower().endswith(".raw"):
+        cmd = f'& "{mv_trimmer_path}" -i "{file_path}"'
+        print(cmd) #testing
+
+        # Run the PS code w/ error messages
+        PS_Error_Checker_and_Runner(cmd, "Trimmer Opened!")
+        return
+    else:
+        messagebox.showerror("Please Select a .raw file")
+        
+    # checks if file is raw file and returns error if not
+
+
+    return
+
 # record
 def mv_record():
-     #adds an error incase no exe folder has been selected. Doesn't crash teh program now
+     #adds an error incase no exe folder has been selected. Doesn't crash the program now
     if not check_exe_selection(): 
          return
      
@@ -291,6 +368,8 @@ def CheckButton(event):
         mv_record()
     elif exe_selection == 'View recordings':
         mv_viewer_playback()
+    elif exe_selection == 'Trim a recording':
+        mv_trimer()
     elif exe_selection == 'Convert .raw file to .csv':
         raw_to_csv()
     # Error Line for errors or not completed options
@@ -308,6 +387,7 @@ root.geometry(resulution)
 # list of all choices in the drop down menu
 dropdown_choices = ['Stream from Camera', 
                     'View recordings', 
+                    'Trim a recording',
                     'Convert .raw file to .csv'] 
 
 # String Stores user selection
@@ -317,7 +397,7 @@ store_user_input_outputFolderLocation = StringVar()
 
 # Creation of menu labels
 menu_label = Label(root, text = 'Select an .exe')
-menu_label.pack(anchor = W, padx = 10, pady = 10) #padx or pady desinates teh exteral padding on each side. That means how big will it be I think
+menu_label.pack(anchor = W, padx = 10, pady = 10) #padx or pady desinates the exteral padding on each side. That means how big will it be I think
 
 # Creation of menu (must be below labels so the label is above the selection which looks better)
 menu_dropdown = ttk.Combobox(root, values = dropdown_choices, textvariable = store_user_input_optionSelection) #textvariable is from ttk
