@@ -1,7 +1,9 @@
 # Damascus
 Sensing system designed with multiple sensing systems.
 
-## V0.1
-1. ...
+## Optiacl, Thermal, and Event V0.1
+To-Do 
+    - Expand plate to cover entire hole without spacer
+    - Use M6 bolts to mount lid 
 
-## V0.2
+
