@@ -10,3 +10,5 @@ Initial hardware design for in situ monitoring system.
 ## V0.3 - First Single Prototype
 Combining the sub-components of V0.2 into a single hardware design. 
 
+## V0.4 
+To Do 
