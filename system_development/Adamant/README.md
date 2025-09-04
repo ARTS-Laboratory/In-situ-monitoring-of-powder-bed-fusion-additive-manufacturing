@@ -8,5 +8,7 @@ Thermal camera holder for WORKSWELL
 Thermal camera holder for Optris Xi 400
 
 ### To-Do
-    * Add a bolt closure for the lid above the camera to secure the lid down through the tabs. 
-    * other things
+- d
+- 
+ * Add a bolt closure for the lid above the camera to secure the lid down through the tabs. 
+ * other things
