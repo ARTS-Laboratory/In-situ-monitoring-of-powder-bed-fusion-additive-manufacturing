@@ -306,7 +306,7 @@ def mv_trimer():
 
 # record
 def mv_record():
-     #adds an error incase no exe folder has been selected. Doesn't crash the program now
+    #adds an error incase no exe folder has been selected. Doesn't crash the program now
     if not check_exe_selection(): 
          return
      
@@ -321,6 +321,15 @@ def mv_record():
         messagebox.showerror("There was an error try again")
 
     store_user_input_outputFolderLocation.set(output_folder_path)
+
+    # --- Open Instructions ---
+    # Get the absolute path of the current script
+    script_path = os.path.abspath(__file__)
+    
+    # Get the directory containing the script
+    script_directory = os.path.dirname(script_path)
+
+    instructions_file_location = f'{script_directory}\Recording_Instructions.txt'
 
     # --- Load Settings ---
     load_settings_popup = popup_options("Settings", # title of popup 
@@ -341,19 +350,25 @@ def mv_record():
         
         #ensure that json was selected
         if file_path_json.lower().endswith(".json"):
-            cmd = f'& "{mv_streamer_path}" -j "{file_path}"'
+            cmd = f'& "{mv_streamer_path}" -j "{file_path_json}" -o "{output_folder_path}"'
+            os.startfile(instructions_file_location)
             print(cmd) #testing
 
             #Run the PS code w/ error messages
             PS_Error_Checker_and_Runner(cmd, "Playback Successful!")
             return
         else:
-            messagebox.showerror("Please Select a .csv file")
+            messagebox.showerror("Please Select a .json file")
             return
     
     #No settings
     else:
-        #complete later
+        cmd = f'& "{mv_streamer_name}" -o "{output_folder_path}"'
+        os.startfile(instructions_file_location)
+        print(cmd) #testing
+
+        #Run the PS code w/ error messages
+        PS_Error_Checker_and_Runner(cmd, "Playback Successful!")
         return
      
 
