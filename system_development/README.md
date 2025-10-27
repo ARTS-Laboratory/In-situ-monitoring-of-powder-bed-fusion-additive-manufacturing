@@ -11,7 +11,7 @@ Custom cover with an integrated optical camera mount for laser-based powder bed 
 <p align="center">
 </p>
 
-## (Adamant)[Adamant]
+## [Adamant](Adamant)
 * An ancient term for an unbreakable, diamond-like substance.
 * Sensing system designed with a THERMAL CAMERA.
 
@@ -21,7 +21,7 @@ Custom cover with an integrated thermal camera mount for laser-based powder bed 
 <p align="center">
 </p>
 
-## (Uru)[Uru]
+## [Uru](Uru)
 * A mystical Asgardian metal, known for its magical properties.
 * Sensing system designed with an EVENT CAMERA.
 
@@ -31,7 +31,7 @@ Custom cover with event camera mount for in-situ monitoring of laser-based powde
 <p align="center">
 </p>
 
-## (Orichalcum)[Orichalcum]
+## [Orichalcum](Orichalcum)
 * A lost golden-red metal from Atlantis and Greek mythology.
 * Sensing system designed with a LASER VIBROMETER.
 
@@ -53,7 +53,7 @@ Integrated dual vision holder securely mounts a thermal camera and an optical ca
 </p>
 
 
-## (Oblivium)[Oblivium]
+## [Oblivium](Oblivium)
 * A mythical dark metal associated with secrecy, resilience, and hidden power.
 * Sensing system designed with EDGE COMPUTING CAPABILITIES for in-situ data processing.
   
