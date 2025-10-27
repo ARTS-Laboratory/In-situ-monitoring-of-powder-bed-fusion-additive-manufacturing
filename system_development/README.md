@@ -1,7 +1,7 @@
 # Systems Variations  
 Different system variations (i.e., product lines) are named after mythical materials. 
 
-## (Mithril)[Mithril]
+## [Mithril](Mithril)
 * A legendary, lightweight, and strong metal from Tolkien’s Middle-earth.
 * Sensing system designed with an optical camera.
 
