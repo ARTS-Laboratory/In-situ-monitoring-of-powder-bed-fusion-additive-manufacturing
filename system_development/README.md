@@ -41,7 +41,7 @@ Experimental setup including custom cover assembly, laser vibrometer, piezoelect
 <p align="center">
 </p>
 
-## (Damascus)[Damascus]
+## [Damascus](Damascus)
 * A famed patterned steel, known for strength and sharpness.
 * Sensing system designed with multiple sensing systems.
 
@@ -53,7 +53,7 @@ Integrated dual vision holder securely mounts a thermal camera and an optical ca
 </p>
 
 
-## (Oblivium)[Oblivium]
+## [Oblivium](Oblivium)
 * A mythical dark metal associated with secrecy, resilience, and hidden power.
 * Sensing system designed with EDGE COMPUTING CAPABILITIES for in-situ data processing.
   
