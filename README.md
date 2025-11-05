@@ -3,14 +3,14 @@ Hardware and software designs for in situ systems for laser-based powder bed fus
 
 
 <p align="center">
-<img src="media/setup_2025.jpg" alt="drawing" width="700"/> <br> 
+<img src="media/setup_2025.jpg" alt="drawing" width="400"/> <br> 
 The laser vibrometer setup of in situ systems for laser-based powder bed fusion additive manufacturing.  
 </p>
 <p align="center">
 </p>
 
 <p align="center">
-<img src="media/cabinetwithcovers.jpg" alt="drawing" width="700"/> <br> 
+<img src="media/cabinetwithcovers.jpg" alt="drawing" width="400"/> <br> 
 Cabinet displaying up to date versions of assembled covers. The following covers in a top-to-bottom arrangement: Uru, Adamant, Mithril, and Damascus. 
 </p>
 <p align="center">
