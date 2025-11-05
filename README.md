@@ -3,15 +3,8 @@ Hardware and software designs for in situ systems for laser-based powder bed fus
 
 
 <p align="center">
-<img src="media/cad.png" alt="drawing" width="700"/> <br> 
-The CAD model of in situ systems for laser-based powder bed fusion additive manufacturing. 
-</p>
-<p align="center">
-</p>
-
-<p align="center">
-<img src="media/setup.jpg" alt="drawing" width="700"/> <br> 
-The Camera setup of in situ systems for laser-based powder bed fusion additive manufacturing.  
+<img src="media/setup_2025.jpg" alt="drawing" width="700"/> <br> 
+The laser vibrometer setup of in situ systems for laser-based powder bed fusion additive manufacturing.  
 </p>
 <p align="center">
 </p>
