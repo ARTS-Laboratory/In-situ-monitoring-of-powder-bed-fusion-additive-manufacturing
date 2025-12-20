@@ -8,5 +8,5 @@ Thermal camera holder for WORKSWELL
 Thermal camera holder for Optris Xi 400
 
 #### To-Do
-- Update the README file. Make a v0.2.1 and delete old files once we get there. 
+- Update the README file. Make a v0.2.1 and delete the old files once we get there. 
 
