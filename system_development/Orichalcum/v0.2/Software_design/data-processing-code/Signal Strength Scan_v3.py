@@ -8,9 +8,9 @@ import matplotlib.pyplot as plt
 
 # Folder path
 
-folder_path = r"C:\Users\mwhetham\Desktop\signal strength data\LayerScanV6 Experiments\Experiment5"
+folder_path = r"C:\Users\MADHAMI\Desktop\Test Weld Experiment"
 # Target heatmap dimensions
-heatmap_dim = (100,100)
+heatmap_dim = (48,48)
 
 
 total_required = heatmap_dim[1] * heatmap_dim[0]

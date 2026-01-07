@@ -12,10 +12,10 @@ import timeit
 
 start = timeit.timeit()*1000
 
-folder_path = r"C:\Users\mwhetham\Desktop\signal strength data\LayerScanV6 Experiments\Experiment5"
+folder_path = r"C:\Users\MADHAMI\Desktop\Test Scan 3"
 print(folder_path)
 
-heatmap_dim = (100,100)
+heatmap_dim = (48,48)
 total_required = heatmap_dim[0] * heatmap_dim[1]
 
 average_displacements = []
@@ -113,7 +113,7 @@ fig_a.update_layout(
 )
 
 # Export to HTML
-pio.write_html(fig_a, file='HTMLs/SteelSheet3.html', auto_open=True)
+pio.write_html(fig_a, file='HTMLs/AluminumScan2.html', auto_open=True)
 
 #%%
 end = timeit.timeit()*1000
