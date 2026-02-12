@@ -1,11 +1,12 @@
-# reconstruct waveform at one point of velocity data
+ # reconstruct waveform at one point of velocity data
 
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
 # Load the LabVIEW file
-filename = r"C:\Users\mwhetham\Desktop\signal strength data\LayerScanV6 Experiments\Experiment2\point-012-012-"
+#filename = r"C:\Users\mwhetham\Desktop\signal strength data\LayerScanV6 Experiments\Experiment2\point-012-012-"
+filename = r"C:\Users\MADHAMI\Desktop\Test Scan 5\point-000-000-"
 with open(filename, 'r') as file:
     lines = file.readlines()
 
@@ -39,6 +40,6 @@ plt.ylim(bottom=-0.4, top=0.4)
 plt.xlabel("Time (μs)")
 plt.ylabel("Amplitude")
 plt.title("Center of Transducer")
-plt.legend()
-plt.grid()
-plt.show()
+#plt.legend()
+#plt.grid()
+#plt.show()

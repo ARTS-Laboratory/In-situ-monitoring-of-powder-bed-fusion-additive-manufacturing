@@ -12,7 +12,7 @@ import timeit
 
 start = timeit.timeit()*1000
 
-folder_path = r"C:\Users\MADHAMI\Desktop\Test Scan 3"
+folder_path = r"C:\Users\MADHAMI\Desktop\Test Scan 4"
 print(folder_path)
 
 heatmap_dim = (50,50)
@@ -113,7 +113,7 @@ fig_a.update_layout(
 )
 
 # Export to HTML
-pio.write_html(fig_a, file='HTMLs/Test Scan 3.html', auto_open=True)
+pio.write_html(fig_a, file='HTMLs/Test Scan 4.html', auto_open=True)
 
 #%%
 end = timeit.timeit()*1000
