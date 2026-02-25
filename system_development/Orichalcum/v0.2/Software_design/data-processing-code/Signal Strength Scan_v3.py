@@ -8,9 +8,9 @@ import matplotlib.pyplot as plt
 
 # Folder path
 
-folder_path = r"C:\Users\MADHAMI\Desktop\Test Weld Experiment"
+folder_path = r"C:\Users\MADHAMI\Desktop\Signal Scan 2"
 # Target heatmap dimensions
-heatmap_dim = (48,48)
+heatmap_dim = (25,25)
 
 
 total_required = heatmap_dim[1] * heatmap_dim[0]
@@ -26,7 +26,7 @@ for file in sorted(os.listdir(folder_path)):  # Sorting ensures consistent order
     try:
         # Read the file
         data = pd.read_csv(file_path, skiprows=24, header=None)
-        Sigstrength = data.values[:, 1]
+        Sigstrength = data.values[:, 2]
         #displacement = data.values[:, 2]  # Displacement column
         
         # Compute average displacement
@@ -66,7 +66,7 @@ heatmap_avg_displacement = np.array(avg_signal).reshape(heatmap_dim)
 plt.figure(figsize=(10, 8))
 plt.imshow(heatmap_avg_displacement, cmap='viridis', interpolation='nearest', vmin=0, vmax=2)
 plt.colorbar(label='Average Displacement')
-#plt.title('100x100 Signal Strength Heatmap with Pulser Off')
+plt.title('Signal Scan 2 (4-square plate)')
 plt.xlabel('X')
 plt.ylabel('Y')
 plt.show()
