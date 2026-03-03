@@ -1,0 +1,29 @@
+document.addEventListener("DOMContentLoaded", function () {
+  const tab = document.getElementById("Getting-started-3rdparty-table-contents2");
+  let prevScrollpos = window.pageYOffset;
+
+  // Green tab scroll behavior (slide in/out)
+  window.addEventListener("scroll", function () {
+    const currentScrollPos = window.pageYOffset;
+
+    if (prevScrollpos > currentScrollPos) {
+      tab.style.right = "40px";
+    } else {
+      tab.style.right = "0px";
+    }
+
+    prevScrollpos = currentScrollPos;
+  });
+
+  // Smooth scroll to #product-specs on click
+  const link = tab.querySelector('a');
+  if (link) {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.getElementById("product-specs");
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  }
+});

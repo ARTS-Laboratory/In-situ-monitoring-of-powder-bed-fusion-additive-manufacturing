@@ -1,0 +1,188 @@
+/**
+ * Saferpay PaymentService
+ *
+ * NOTICE OF LICENSE
+ *
+ * Once you have purchased the software with PIT Solutions AG / Six Payment services AG
+ * or one of its  authorised resellers and provided that you comply with the conditions of this contract,
+ * PIT Solutions AG and Six Payment services AG grants you a non-exclusive license,
+ * unlimited in time for the usage of the software in the manner of and for the purposes specified in License.txt
+ * available in extension package, according to the subsequent regulations
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to
+ * newer versions in the future.
+ *
+ * @category Saferpay
+ * @package Saferpay_PaymentService
+ * @author PIT Solutions Pvt. Ltd.
+ * @copyright Copyright (c) 2020 PIT Solutions AG. (www.pitsolutions.ch) and Six Payment services AG ( https://www.six-payment-services.com/)
+ * @license https://www.webshopextension.com/en/licence-agreement-saferpay
+ *
+ */
+ 
+let Notify = {
+    load: false,
+    active: false,
+    visible: false,
+    type: null,
+    ok: null, 
+    cancel: null, 
+    timer : null,
+    oktext:'OK',
+    canceltext:'cancel',
+    init: function () {
+       
+        this.jQuerywrapper = jQuery('<div class="notify-wrapper"><div class="notify-window"><h3></h3><p></p><div class="buttons"><button class="ok">OK</buton><button class="cancel">Cancel</buton></div></div></div>');
+        jQuery('body').append(this.jQuerywrapper);
+        this.jQuerywindow = jQuery('.notify-window', this.jQuerywrapper);
+        this.load = true;
+        this.bind();
+    },
+    reset: function () {
+        jQuery('h3', this.jQuerywindow).hide();
+        jQuery('p', this.jQuerywindow).hide();
+        jQuery('.buttons', this.jQuerywindow).hide();
+        jQuery('button.ok', this.jQuerywindow).hide();
+        jQuery('button.cancel', this.jQuerywindow).hide();
+    },
+    bind: function () {
+        let self = this;
+
+        this.jQuerywrapper.on('click', function (e) {
+            let jQuerytarget = jQuery(e.target);
+            if (jQuerytarget.is('.notify-window') || jQuerytarget.closest('.notify-window').length > 0) {
+                // no action to be done
+            } else {
+                self.hide();
+            }
+        });
+
+
+        this.jQuerywrapper.on('click', 'button.ok', function () {
+            if (!self.active) return;
+            self.hide();
+            if (self.ok) {
+                self.ok();
+            }
+        });
+
+        this.jQuerywrapper.on('click', 'button.cancel', function () {
+            if (!self.active) return;
+            self.hide();
+            if (self.cancel) {
+                self.cancel();
+            }
+        });
+    },
+    alert: function (param) {
+       
+        if (typeof (param) === 'string') {
+            this.show({ title: param, type: 'alert' });
+        } else {
+            param.type = 'alert';
+            this.show(param);
+        }
+    },
+    error: function (param) {
+        this.alert(param);
+    },
+    confirm: function (param) {
+        if (typeof (param) === 'string') {
+            this.show({ title: param, type: 'confirm' });
+        } else {
+            param.type = 'confirm';
+            this.show(param);
+        }
+    },
+    success: function (param) {
+        if (typeof (param) === 'string') {
+            this.show({ title: param, type: 'success' });
+        } else {
+            param.type = 'success';
+            this.show(param);
+        }
+    jQuery(".smallLoader").hide();
+
+    },
+    suc: function (param) {
+        this.success(param);
+    },
+    show: function (param) {
+        if (!this.load) {
+            this.init();
+        }
+        if (this.timer) {
+            clearTimeout(this.timer);
+        }
+        this.reset();
+        this.jQuerywindow.removeClass('alert confirm success').addClass(param.type);
+        if (param.title) {
+            jQuery('h3', this.jQuerywindow).text(param.title).show();
+            if (param.type == 'alert') {
+                jQuery('h3', this.jQuerywindow).prepend(jQuery('<i class="fas fa-exclamation-circle" aria-hidden="true">'));
+            } else if (param.type == 'confirm') {
+                jQuery('h3', this.jQuerywindow).prepend(jQuery('<i class="fas fa-question-circle" aria-hidden="true">'));
+            }else if (param.type == 'success') {
+                jQuery('h3', this.jQuerywindow).prepend(jQuery('<i class="fas fa-check" aria-hidden="true">'));
+            }
+        }
+
+        if (param.text) {
+            jQuery('p', this.jQuerywindow).text(param.text).show();
+        } else if (param.html) {
+            jQuery('p', this.jQuerywindow).html(param.html).show();
+        }
+
+        if (param.type == 'alert' || param.type == 'confirm' || param.type == 'success') {
+            jQuery('.buttons .ok', this.jQuerywindow).text(param.oktext).show();
+            if (param.type == 'confirm') {
+                jQuery('.buttons .cancel', this.jQuerywindow).text(param.canceltext).show();
+            }
+            jQuery('.buttons', this.jQuerywindow).show();
+        }
+
+        // callback
+        this.ok = null;
+        // focus callback
+        if (param.focus) {
+            this.ok = function () {
+                param.focus.focus();
+            }
+        }
+        if (param.ok) {
+            this.ok = param.ok;
+        }
+        this.cancel = null;
+        if (param.cancel) {
+            this.cancel = param.cancel;
+        }
+
+        this.jQuerywrapper.show();
+        let self = this;
+        setTimeout(function () {
+            self.jQuerywrapper.addClass('show');
+            self.active = true;
+        }, 0);
+    },
+    hide: function () {
+        this.jQuerywrapper.removeClass('show');
+        this.active = false;
+        let self = this;
+        this.timer = setTimeout(function () {
+            self.jQuerywrapper.hide();
+        }, 300);
+    },
+    top: function () {
+        let top = (jQuery(window).height() - this.jQuerywindow.outerHeight()) / 2;
+        if (top < 0) {
+            top = 0;
+        }
+        this.jQuerywindow.css('top', top);
+    },
+    loading: function (msg) {
+        if (!msg) return;
+        jQuery.ajaxLoadingMsg = msg;
+    }
+}
