@@ -8,14 +8,14 @@ import matplotlib.pyplot as plt
 from scipy.ndimage import gaussian_filter
 import plotly.graph_objects as go
 import plotly.io as pio
-import timeit
+import time
 
-start = timeit.timeit()*1000
+start_time = time.time()
 
-folder_path = r"C:\Users\MADHAMI\Desktop\Test Scan 4"
+folder_path = r"C:\Users\MADHAMI\Desktop\Signal Scan 2"
 print(folder_path)
 
-heatmap_dim = (50,50)
+heatmap_dim = (25,25)
 total_required = heatmap_dim[0] * heatmap_dim[1]
 
 average_displacements = []
@@ -28,7 +28,7 @@ for file in sorted(os.listdir(folder_path)):  # Sorting ensures consistent order
         # Read the file
         data = pd.read_csv(file_path, skiprows=24, header=None)
         
-        displacement = data.values[:, 1]  # Displacement column
+        displacement = data.values[:, 2]  # Displacement column
         
         # Compute average displacement
         avg_displacement = np.mean(displacement)
@@ -113,9 +113,9 @@ fig_a.update_layout(
 )
 
 # Export to HTML
-pio.write_html(fig_a, file='HTMLs/Test Scan 4.html', auto_open=True)
+pio.write_html(fig_a, file='HTMLs/Signal Scan 2.html', auto_open=True)
 
 #%%
-end = timeit.timeit()*1000
-print('Runtime =', end - start)
+end_time = time.time()
+print(f"\nRuntime: {end_time - start_time:.3f} seconds")
 

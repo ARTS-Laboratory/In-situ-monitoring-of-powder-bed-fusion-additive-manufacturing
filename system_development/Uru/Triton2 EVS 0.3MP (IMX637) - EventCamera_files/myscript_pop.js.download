@@ -1,0 +1,149 @@
+
+jQuery(document.body).on('checkout_error', function () {
+
+  let error_count = jQuery('.woocommerce-error li').length;
+
+  let sfwp_waiting = jQuery('#waitsfwp').length;
+
+  if (error_count > 1) {
+
+    jQuery('body').trigger('update_checkout');
+  } else if (error_count == 0) {
+    jQuery('body').find('.woocommerce-NoticeGroup-checkout').css("display", "none");
+    let popURL = {
+      action: "popup_redirect_url",
+    };
+    jQuery.ajax({
+      type: 'POST',
+      url: sfwp_ajax_object.ajaxurl,
+      data: popURL,
+      //    dataType:   'json',
+      beforeSend: function (xhr) {
+        jQuery('body').find('.woocommerce-NoticeGroup-checkout').css("display", "none");
+      },
+      success: function (response) {
+        if (response != "" && response != "no-redirection") {
+          let selected_method = jQuery('input[name=payment_method]:checked').val();
+          jQuery("#thedialog").attr('src', response);
+          jQuery("#iframe-wrap").addClass(selected_method);
+          jQuery("#iframe-wrap").addClass("open");
+          jQuery("body").addClass('pop-visible sfwp-popup');
+          jQuery("body").append("<div class='sfwp-pop-bg'></div>");
+          jQuery('body').find('.woocommerce-NoticeGroup-checkout').css("display", "none");
+        } else {
+          jQuery('body').find('.woocommerce-NoticeGroup-checkout').css("display", "block");
+          return false;
+
+        }
+      },
+      error: function (e) {
+      }
+    });
+  }
+
+  if (error_count == 0 && sfwp_waiting == 0) {
+
+    jQuery('body').trigger('update_checkout');
+
+  }
+
+});
+
+function setIframeAttributes() {
+	const iframes = document.querySelectorAll("iframe");
+  iframes.forEach((iframe) => {
+    // Set the crossorigin attribute to desired value, e.g., "anonymous"
+    iframe.setAttribute("crossorigin", "anonymous");
+  });
+
+}
+
+
+// Custom events for checkout click
+document.addEventListener("DOMContentLoaded", () => {
+  setIframeAttributes();
+  document.body.addEventListener("click", (event) => {
+    const button = event.target.classList.contains(
+      "wc-block-components-checkout-place-order-button"
+    );
+
+    const buttonText = event.target.classList.contains(
+      "wc-block-components-checkout-place-order-button__text"
+    );
+    
+    if (event.target && (button || buttonText)) {
+      event.preventDefault();
+      const customEvent = new CustomEvent("onPlaceOrderButtonClicked");
+      window.dispatchEvent(customEvent);
+      //   return false
+    }
+
+    if (event.target.tagName === "INPUT" && event.target.type === "checkbox") {
+      let checkbox = event.target;
+      // Defensive DOM checks: the layout may vary when credit card is disabled
+      const saveCardDiv = checkbox && checkbox.parentNode && checkbox.parentNode.parentNode && checkbox.parentNode.parentNode.parentNode ? checkbox.parentNode.parentNode.parentNode : null;
+
+      if (saveCardDiv && saveCardDiv.parentNode) {
+        if (!checkbox.checked) {
+          saveCardDiv.parentNode.dataset.saveCardChecked = 'unchecked';
+        } else {
+          saveCardDiv.parentNode.dataset.saveCardChecked = 'checked';
+        }
+      }
+
+      if (saveCardDiv) {
+        const saferpayAliasDiv = saveCardDiv.querySelector(".spgw-saferpay-alias");
+        if (saferpayAliasDiv) {
+          if (!checkbox.checked) {
+            saferpayAliasDiv.style.display = "block";
+            const select = saferpayAliasDiv.querySelector("select");
+            if (select) {
+              const newOption = select.querySelector("option[value='new']");
+              if (newOption) {
+                select.selectedIndex = Array.prototype.indexOf.call(select.options, newOption);
+              }
+            }
+          } else {
+            saferpayAliasDiv.style.display = "none";
+          }
+        }
+      }
+    }
+  
+  });
+});
+
+// Listener for checkout api call
+(function () {
+  if( document.body.classList.contains('woocommerce-checkout') ) {
+  const originalFetch = window.fetch;
+ 
+  window.fetch = async function () {
+    const response = await originalFetch.apply(this, arguments);
+    
+ 
+    if (
+      typeof arguments[0] === "string" &&
+      arguments[0].includes("wc/store/v1/checkout")
+    ) {
+      try {
+        response
+          .clone()
+          .json()
+          .then((data) => {            
+            if (data?.payment_result?.payment_status === "success") {
+              const customEvent = new CustomEvent("checkoutCompleted", {
+                detail: data,
+              });
+              window.dispatchEvent(customEvent);
+            }
+          });
+      } catch (error) {
+        console.error("Error parsing JSON from response:", error);
+      }
+    }
+ 
+    return response;
+  };
+}
+})();

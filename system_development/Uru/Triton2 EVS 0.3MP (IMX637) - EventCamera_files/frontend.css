@@ -1,0 +1,308 @@
+/* Styles for Currency Switcher Widget */
+.error {
+	background-color: #FFEBE8;
+	border: 1px solid #C00;
+	border-radius: 4px;
+	padding: 4px;
+}
+
+.error .title {
+	font-weight: bold;
+	font-size: large;
+}
+
+.widget_wc_aelia_currencyswitcher_widget .currency_button {
+	display: inline-block;
+}
+
+.widget_wc_aelia_currencyswitcher_widget .widget_errors {
+	list-style-type: disc;
+	list-style-position: inside;
+}
+
+/**
+ * Common styles for HTML dropdown widgets.
+ *
+ * @since 4.12.2.210706
+ */
+ .wc_aelia_cs_country_selector .dropdown .option.filter_hidden {
+	display: none;
+}
+
+.widget_wc_aelia_currencyswitcher_widget .dropdown .option.selected,
+.widget_wc_aelia_currencyswitcher_widget .dropdown .option:hover {
+	background-color: whitesmoke;
+}
+
+.widget_wc_aelia_currencyswitcher_widget .dropdown .options {
+	margin: 0;
+}
+
+.widget_wc_aelia_currencyswitcher_widget .dropdown_selector .dropdown .search-container {
+	width: calc(100% - 30px);
+	margin: 15px;
+}
+
+.widget_wc_aelia_currencyswitcher_widget .dropdown_selector .dropdown .search-container .search {
+	display: block;
+	border-style: solid;
+	padding: 10px;
+	font-family: inherit;
+	min-height: 35px;
+	height: auto;
+	width: 100%;
+	transition: border-color ease .3s;
+	min-width: 50%;
+}
+
+/**
+ * Styles for the "flags" dropdown currency selector.
+ *
+ * @since 4.12.0.210629
+ */
+.wc_aelia_cs_currency_selector {
+	position: relative;
+	width: 100%;
+	padding: 10px 0;
+
+	max-width: 400px;
+	font-size: 15px;
+}
+
+.wc_aelia_cs_currency_selector .selected_currency {
+	align-items: center;
+	user-select: none;
+	max-width: 400px;
+	position: relative;
+	padding: 10px 32px 10px 8px;
+	display: flex;
+	cursor: pointer;
+	width: 100%;
+	border: 1px solid silver;
+}
+
+.wc_aelia_cs_currency_selector .selected_currency:before {
+	content: '';
+	background-size: contain;
+	height: 12px;
+	width: 12px;
+	position: absolute;
+	right: 12px;
+	top: 12px;
+	transition: .2s ease-out;
+	border-bottom: 1px solid gray;
+	border-right: 1px solid gray;
+	transform: rotate(45deg);
+	color: silver;
+}
+
+.wc_aelia_cs_currency_selector.active .selected_currency:before {
+	transform: rotate(225deg);
+	top: 18px;
+}
+
+.wc_aelia_cs_currency_selector .dropdown {
+	display: none;
+	position: absolute;
+	top: calc(100%);
+	width: 100%;
+	max-width: 100% !important;
+	min-width: 130px;
+	background-color: #fff;
+	/* border-radius: 5px; */
+	z-index: 1000;
+	border: 1px solid silver;
+	padding: 6px 0;
+}
+
+.wc_aelia_cs_currency_selector .dropdown .currencies {
+	max-height: 190px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	overflow-y: auto;
+}
+
+.wc_aelia_cs_currency_selector .dropdown .currency {
+	display: flex;
+	padding: 5px 8px;
+	align-items: center;
+	margin-bottom: 0;
+	cursor: pointer;
+	transition: .3s;
+	text-decoration: none !important;
+	outline: none !important;
+}
+
+.wc_aelia_cs_currency_selector .dropdown .currency:hover {
+	background-color: whitesmoke;
+}
+
+/* Add a green "tick mark" next to the selected currency in the drodown
+.wc_aelia_cs_currency_selector .dropdown .selected {
+	background-color: whitesmoke;
+}
+
+.wc_aelia_cs_currency_selector .dropdown .currency.selected .currency_flag::before {
+	content: '';
+	border-right: 2px solid white;
+	display: block;
+	height: 4px;
+	width: 2px;
+	border-bottom: 2px solid white;
+	transform: rotate(45deg);
+	position: absolute;
+	top: -2px;
+	right: 0px;
+	z-index: 10000;
+}
+
+.wc_aelia_cs_currency_selector .dropdown .currency.selected .currency_flag::after {
+	content: '';
+	position: absolute;
+	top: -4px;
+	right: -4px;
+	height: 13px;
+	width: 13px;
+	border-radius: 50%;
+	background-color: #8bc34a;
+	display: block;
+}
+*/
+
+.wc_aelia_cs_currency_selector .currency_flag {
+	position: relative;
+	justify-content: center;
+	border-radius: 2px;
+	align-items: center;
+	display: flex;
+	height: fit-content;
+	max-height: 20px;
+	min-width: 30px;
+	z-index: 1;
+}
+
+.wc_aelia_cs_currency_selector .currency_name {
+	width: 100%;
+	max-width: 300px;
+	overflow: hidden;
+	white-space: nowrap;
+	display: block;
+	text-overflow: ellipsis;
+	margin-left: 10px;
+}
+
+.wc_aelia_cs_currency_selector.dropdown_selector .currency_flag img {
+	border-radius: 2px;
+	max-height: 30px;
+	object-fit: cover;
+	max-width: 30px !important;
+	z-index: -1;
+}
+
+/**
+ * Styles for the "flags" dropdown country selector.
+ *
+ * @since 4.12.2.210706
+ */
+ .wc_aelia_cs_country_selector {
+	position: relative;
+	width: 100%;
+	padding: 10px 0;
+
+	max-width: 400px;
+	font-size: 15px;
+}
+
+.wc_aelia_cs_country_selector .selected_country {
+	align-items: center;
+	user-select: none;
+	max-width: 400px;
+	position: relative;
+	padding: 10px 32px 10px 8px;
+	display: flex;
+	cursor: pointer;
+	width: 100%;
+	border: 1px solid silver;
+}
+
+.wc_aelia_cs_country_selector .selected_country:before {
+	content: '';
+	background-size: contain;
+	height: 12px;
+	width: 12px;
+	position: absolute;
+	right: 12px;
+	top: 12px;
+	transition: .2s ease-out;
+	border-bottom: 1px solid gray;
+	border-right: 1px solid gray;
+	transform: rotate(45deg);
+	color: silver;
+}
+
+.wc_aelia_cs_country_selector.active .selected_country:before {
+	transform: rotate(225deg);
+	top: 18px;
+}
+
+.wc_aelia_cs_country_selector .dropdown {
+	display: none;
+	position: absolute;
+	top: calc(100%);
+	width: 100%;
+	max-width: 100% !important;
+	min-width: 130px;
+	background-color: #fff;
+	/* border-radius: 5px; */
+	z-index: 1000;
+	border: 1px solid silver;
+	padding: 6px 0;
+}
+
+.wc_aelia_cs_country_selector .dropdown .countries {
+	max-height: 190px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	overflow-y: auto;
+}
+
+.wc_aelia_cs_country_selector .dropdown .country {
+	display: flex;
+	padding: 5px 8px;
+	align-items: center;
+	margin-bottom: 0;
+	cursor: pointer;
+	transition: .3s;
+	text-decoration: none !important;
+	outline: none !important;
+}
+
+.wc_aelia_cs_country_selector .country_flag {
+	position: relative;
+	justify-content: center;
+	border-radius: 2px;
+	align-items: center;
+	display: flex;
+	height: fit-content;
+	max-height: 20px;
+	min-width: 30px;
+	z-index: 1;
+}
+
+.wc_aelia_cs_country_selector .country_name {
+	width: 100%;
+	max-width: 300px;
+	overflow: hidden;
+	white-space: nowrap;
+	display: block;
+	text-overflow: ellipsis;
+	margin-left: 10px;
+}
+
+.wc_aelia_cs_country_selector.dropdown_selector .country_flag img {
+	border-radius: 2px;
+	max-height: 30px;
+	object-fit: cover;
+	max-width: 30px !important;
+	z-index: -1;
+}

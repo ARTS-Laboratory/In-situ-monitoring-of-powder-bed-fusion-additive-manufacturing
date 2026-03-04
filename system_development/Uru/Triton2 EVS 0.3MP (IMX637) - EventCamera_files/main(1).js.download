@@ -1,0 +1,141 @@
+/**
+ * Saferpay PaymentService
+ *
+ * NOTICE OF LICENSE
+ *
+ * Once you have purchased the software with PIT Solutions AG / Six Payment services AG
+ * or one of its  authorised resellers and provided that you comply with the conditions of this contract,
+ * PIT Solutions AG and Six Payment services AG grants you a non-exclusive license,
+ * unlimited in time for the usage of the software in the manner of and for the purposes specified in License.txt
+ * available in extension package, according to the subsequent regulations
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to
+ * newer versions in the future.
+ *
+ * @category Saferpay
+ * @package Saferpay_PaymentService
+ * @author PIT Solutions Pvt. Ltd.
+ * @copyright Copyright (c) 2020 PIT Solutions AG. (www.pitsolutions.ch) and Six Payment services AG ( https://www.six-payment-services.com/)
+ * @license https://www.webshopextension.com/en/licence-agreement-saferpay
+ *
+ */
+ 
+/*  
+ * save card checkbox function on checkout page
+ */
+window.addEventListener('load', (event) => {
+    // PAGE IS FULLY LOADED  
+    // FADE OUT YOUR OVERLAYING DIV
+    jQuery('#ajax-loading-payment').hide();
+})
+jQuery(document).ready(function() {
+    let $ = jQuery;
+    
+    /* remove button from html*/
+    jQuery(".woocommerce-MyAccount-content table a.button.change_payment_method").remove();
+
+    $(document).on("click", ".spgw-common-savecard input:checkbox", function() {
+        if (jQuery(this).not(':checked').length >0) {
+            
+            jQuery(this).parents(".spgw-common-savecard").children('.spgw-saferpay-alias').show();
+            jQuery(this).parents(".spgw-common-savecard").children('.spgw-saferpay-alias').find('select option[value="new"]').attr("selected", "selected");
+        } else {
+           
+            jQuery(this).parents(".spgw-common-savecard").children('.spgw-saferpay-alias').hide();
+            jQuery(this).parents(".spgw-common-savecard").children('.spgw-saferpay-alias').find('select option[value="new"]').attr("selected", "selected");
+        }
+    });
+    jQuery(document).on("change", ".spgw-saferpay-alias select", function() { 
+        if(jQuery('#saferpay-div').length > 0){
+            jQuery(this).parents('.spgw-common-savecard').parent().parent().parent().eq(0).attr('data-select-value', jQuery(this).val());
+        }else{
+            jQuery(this).parents('.spgw-common-savecard').parent().parent().parent().parent().eq(0).attr('data-select-value', jQuery(this).val());
+        }
+        
+       
+        if(jQuery(this).val() == "new"){
+            jQuery('#saferpay-div').show();
+            jQuery('.credit_error').show();
+            if(jQuery('.woocommerce-SavedPaymentMethods-saveNew').length > 0){
+                jQuery(this).parents('.spgw-common-savecard').find('.woocommerce-SavedPaymentMethods-saveNew').show();  
+            }else if(jQuery('.wc-block-components-payment-methods__save-card-info').length > 0){
+                if(jQuery('#saferpay-div').length > 0){
+                    jQuery(this).parents('.spgw-common-savecard').parent().parent().find('.wc-block-components-payment-methods__save-card-info').show();
+                }else{
+                    jQuery(this).parents('.spgw-common-savecard').parent().parent().siblings('.wc-block-components-payment-methods__save-card-info').show();
+                }
+                
+            }
+            
+        }else{
+            jQuery('#saferpay-div').hide();
+            jQuery('.credit_error').hide();
+            if(jQuery('.woocommerce-SavedPaymentMethods-saveNew').length > 0){
+                jQuery(this).parents('.spgw-common-savecard').find('.woocommerce-SavedPaymentMethods-saveNew').hide(); 
+            }else if(jQuery('.wc-block-components-payment-methods__save-card-info').length > 0){
+                if(jQuery('#saferpay-div').length > 0){
+                    jQuery(this).parents('.spgw-common-savecard').parent().parent().find('.wc-block-components-payment-methods__save-card-info').hide();
+                }else{
+                    jQuery(this).parents('.spgw-common-savecard').parent().parent().siblings('.wc-block-components-payment-methods__save-card-info').hide();
+                }
+               
+            }
+            
+        }
+     });
+
+    window.addEventListener('pmIframeEvent', (e) => {
+        
+        let errornotice = {
+                   action: "error_redirect_checkout",
+                    'msg': e.detail.msg,
+                    'type': e.detail.type,
+               };
+          jQuery.ajax({
+                   type:        'POST',
+                   url: e.detail.ajaxurl, 
+                   data:errornotice,
+                   success: function(response) {
+                    window.location.href = e.detail.url;
+                   }
+
+            });
+});
+
+})
+
+/* 
+ * Delete card
+ */
+function confSubmit(form) {
+    Notify.confirm({
+        title: notify.title,
+        html: notify.html,
+        oktext: notify.oktext,
+        canceltext: notify.canceltext,
+        ok: function() {
+            jQuery(".smallLoader").show();
+            form.submit();
+        },
+        cancel: function() {
+            //    Notify.alert('cancel');
+        },
+        focus: function() {
+            //    Notify.alert('focus');
+        }
+    });
+}
+
+function aliasUpdate(form) {
+    jQuery(".validUntil").show();
+    jQuery(form).find(".ExpMonth").show();
+    jQuery(form).find(".ExpYear").show();
+    jQuery(form).find(".aliasEdit").hide();
+    jQuery(form).find(".aliasUpdate").show();
+    jQuery(form).find('.auWrap').slideToggle();
+}
+jQuery('.aliasUpdate').on('click',function() {
+  jQuery(".smallLoader").show();
+});

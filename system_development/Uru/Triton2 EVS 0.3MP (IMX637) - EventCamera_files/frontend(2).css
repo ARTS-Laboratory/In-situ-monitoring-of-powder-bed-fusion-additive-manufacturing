@@ -1,0 +1,105 @@
+.soo-product-filter-widget .product-filter {
+  margin-bottom: 30px;
+}
+.soo-product-filter-widget input[type=checkbox],
+.soo-product-filter-widget input[type=radio] {
+  display: none;
+}
+.soo-product-filter-widget label {
+  font-weight: 400;
+  cursor: pointer;
+}
+.soo-product-filter-widget .filter-list li {
+  cursor: pointer;
+}
+.soo-product-filter-widget .filter-list .selected {
+  text-decoration: underline;
+}
+.soo-product-filter-widget .list label {
+  display: block;
+}
+.soo-product-filter-widget .h-list li {
+  display: inline-block;
+  margin: 6px;
+}
+.soo-product-filter-widget .h-list li .count {
+  display: none;
+}
+.soo-product-filter-widget .count {
+  float: right;
+}
+.soo-product-filter-widget .swatch {
+  border-radius: 50%;
+  transition: 0.5s;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  opacity: 0.5;
+  cursor: pointer;
+  margin: 6px;
+  text-align: center;
+  overflow: hidden;
+}
+.soo-product-filter-widget .swatch.selected {
+  font-weight: 700;
+  opacity: 1;
+}
+.soo-product-filter-widget .swatch-color {
+  text-indent: -99999px;
+  position: relative;
+}
+.soo-product-filter-widget .swatch-color.selected {
+  box-shadow: 0 0 10px;
+}
+.soo-product-filter-widget .swatch-color.selected:before {
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+  content: "";
+  width: 4px;
+  height: 9px;
+  display: block;
+  border: solid #fff;
+  border-width: 0 1px 1px 0;
+  position: absolute;
+  top: 10px;
+  left: 13px;
+}
+.soo-product-filter-widget .swatch-label {
+  color: #000;
+  opacity: 0.3;
+}
+.soo-product-filter-widget .list input:checked + span {
+  font-weight: 400;
+  text-decoration: underline;
+}
+.soo-product-filter-widget .filter-slider {
+  height: 4px;
+  margin: 0 7px 20px 7px;
+  position: relative;
+  background-color: #ccc;
+}
+.soo-product-filter-widget .filter-slider .ui-slider-range {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  background-color: #666;
+}
+.soo-product-filter-widget .filter-slider .ui-slider-handle {
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  border: 7px solid #333;
+  position: absolute;
+  top: -5px;
+  margin-left: -7px;
+}
+.soo-product-filter-widget .filter-slider .ui-slider-handle:focus {
+  outline: none;
+}
+.soo-product-filter-widget .ajax-filter .filter-button {
+  display: none;
+}
+.no-js .soo-product-filter-widget .ajax-filter .filter-button {
+  display: inline-block;
+}

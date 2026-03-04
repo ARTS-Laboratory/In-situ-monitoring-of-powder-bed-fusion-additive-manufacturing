@@ -1,0 +1,170 @@
+.taxopress-table-container {
+    width: 100%;
+}
+
+.taxopress-table-row td {
+    border: none;
+}
+
+.taxopress-table-row:nth-child(n+7) {
+    display: none;
+}
+
+.taxopress-see-more-link,
+.taxopress-close-table-link {
+    cursor: pointer;
+}
+
+.taxopress-close-table-link {
+    display: none;
+}
+
+.taxopress-see-more-container {
+    text-align: right;
+    padding: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.taxopress-table-container .taxopress-post-count {
+    text-align: right;
+    padding-right: 30px;
+}
+
+.taxopress-arrow {
+    display: inline-block;
+}
+
+.taxopress-arrow.right {
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid;
+}
+
+.taxopress-arrow.down {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid;
+}
+
+/* border-cloud styling */
+.taxopress-border-cloud a{
+    text-decoration: none;
+    border: 1px solid;
+    padding: 4px 7px; 
+    display: inline-block;
+    margin: 3px;
+}
+
+/* box-list styling */
+.taxopress-box-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+.taxopress-box-list a {
+    display: block;
+    text-decoration: none;
+    box-sizing: border-box;
+    word-wrap: break-word;
+}
+
+.taxopress-box-list img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.taxopress-boxrelatedpost-cat{
+    color:#666;
+    font-size: 0.9em;
+}
+
+@media (max-width: 1200px) {
+    .taxopress-box-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 768px) {
+    .taxopress-box-list {
+        grid-template-columns: 1fr;
+        word-wrap: break-word;
+    }
+}
+
+.taxopress-parent-child-list {
+    list-style: none !important;
+}
+  
+.taxopress-parent-term {
+    font-weight: normal;
+    margin: 0.5em 0;
+    list-style-type: none !important;
+    position: relative;
+    padding-left: 1.5em;
+}
+  
+.taxopress-child-list {
+    list-style: none !important;
+    margin: 0.3em 0 0.3em 1em !important;
+    padding-left: 0 !important;
+}
+  
+.taxopress-child-term {
+    font-weight: normal;
+    margin: 0.2em 0;
+    position: relative;
+    padding-left: 1.5em;
+}
+  
+.taxopress-parent-term::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    font-size: 1.2em;
+    line-height: 1;
+}
+  
+.taxopress-child-list > li::before {
+    content: "○";
+    position: absolute;
+    left: 0;
+    font-size: 1.2em;
+    line-height: 1;
+}
+
+.taxopress-child-list .taxopress-child-list > li::before {
+    content: "▪  ▪";
+    font-size: 1.2em;
+}
+
+.taxopress-child-list {
+    margin-left: 1em !important;
+}
+
+.taxopress-child-list .taxopress-child-list {
+    margin-left: 1em !important;
+}
+
+.taxopress-parent-term,
+.taxopress-child-list li {
+    font-weight: normal;
+}
+
+.taxopress-box-list img.custom-image-class {
+    width: var(--tp-image-width, 200px);
+    height: var(--tp-image-height, 200px);
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    display: block;
+    max-width: 100%;
+}
+
+a.st_tag, a.internal_tag, .st_tag, .internal_tag {
+    text-decoration: underline !important;
+}
