@@ -35,6 +35,7 @@ This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 Intern
   author = {{ARTS-L}ab},  
   title  = {In situ monitoring of powder bed fusion additive manufacturing},  
   groups = {{ARTS-L}ab},  
+  note = {Accessed: 20xx-xx-xx},  
   url    = {https://github.com/ARTS-Laboratory/In-situ-monitoring-of-Powder-bed-fusion-additive-manufacturing},  
 }  
 
