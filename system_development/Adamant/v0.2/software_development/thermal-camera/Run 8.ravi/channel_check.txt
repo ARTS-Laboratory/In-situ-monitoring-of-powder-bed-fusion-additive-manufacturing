@@ -1,0 +1,7 @@
+raw frame shape: (289, 382, 3)
+ch0 min/max: 0, 255
+ch1 min/max: 0, 255
+ch2 min/max: 0, 255
+2ch 16bit shape: (289, 382)
+2ch temp min/max/mean: -74.5, 6452.1, 1523.2
+byteswapped temp min/max/mean: -91.7, 6440.0, 6411.9
